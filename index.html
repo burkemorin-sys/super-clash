@@ -188,9 +188,9 @@ body{padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-i
 /* ===== Arena battlefield ===== */
 #game{max-width:760px}
 #field{position:relative;border:4px solid #111;border-radius:12px;overflow:hidden;box-shadow:5px 5px 0 #111;display:flex;flex-direction:column;padding:10px;
- background:repeating-conic-gradient(#8f9296 0 25%,#7a7d82 0 50%) 0 0/20px 20px}
-#field::before{content:"";position:absolute;inset:10px;border-radius:4px;box-shadow:inset 0 0 0 3px #111,inset 0 0 0 6px #5c8a2e;
- background:repeating-conic-gradient(#86d35a 0 25%,#79c84e 0 50%) 0 0/28px 28px}
+ background:repeating-conic-gradient(var(--w1,#8f9296) 0 25%,var(--w2,#7a7d82) 0 50%) 0 0/20px 20px}
+#field::before{content:"";position:absolute;inset:10px;border-radius:4px;box-shadow:inset 0 0 0 3px #111,inset 0 0 0 6px var(--ge,#5c8a2e);
+ background:repeating-conic-gradient(var(--g1,#86d35a) 0 25%,var(--g2,#79c84e) 0 50%) 0 0/28px 28px}
 #decor{position:absolute;inset:10px;z-index:0;pointer-events:none}#decor img{position:absolute;width:24px;height:24px;image-rendering:pixelated}
 #decor img.sidet{width:30px;height:36px;opacity:.95}
 .hqrow,.zone,.midline{position:relative;z-index:1}
@@ -204,8 +204,8 @@ body{padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-i
 .hqtxt .hp{font-size:13px!important;font-family:inherit!important;font-weight:bold}
 #field .zone{display:flex;justify-content:center;align-items:flex-end;gap:6px;min-height:118px;padding:4px;background:none;border:0;flex-wrap:nowrap}
 .midline{text-align:center;height:34px;line-height:34px;font-weight:bold;font-size:12px;color:#fff;text-shadow:2px 2px 0 #111;margin:2px -10px;
- border-top:3px solid #111;border-bottom:3px solid #111;background:repeating-linear-gradient(90deg,#3fa7f0 0 8px,#4cb4ff 8px 16px,#2f8fd8 16px 24px) 0 0/48px 100%,#3fa7f0;animation:water 1.2s steps(6) infinite;image-rendering:pixelated}
-.midline::before,.midline::after{content:"";position:absolute;top:-7px;bottom:-7px;width:46px;background:repeating-linear-gradient(0deg,#a0673a 0 6px,#7a4a26 6px 8px);border:3px solid #111;border-radius:3px;box-shadow:inset 3px 0 0 #c28452,inset -3px 0 0 #5c3519}
+ border-top:3px solid #111;border-bottom:3px solid #111;background:repeating-linear-gradient(90deg,var(--r1,#3fa7f0) 0 8px,var(--r2,#4cb4ff) 8px 16px,var(--r3,#2f8fd8) 16px 24px) 0 0/48px 100%,var(--r1,#3fa7f0);box-shadow:0 0 10px var(--rg,transparent);animation:water 1.2s steps(6) infinite;image-rendering:pixelated}
+.midline::before,.midline::after{content:"";position:absolute;top:-7px;bottom:-7px;width:46px;background:repeating-linear-gradient(0deg,var(--b1,#a0673a) 0 6px,var(--b2,#7a4a26) 6px 8px);border:3px solid #111;border-radius:3px;box-shadow:inset 3px 0 0 var(--b3,#c28452),inset -3px 0 0 var(--b4,#5c3519)}
 .midline::before{left:17%}.midline::after{right:17%}
 #fieldHint{position:relative;z-index:2;background:#0007;border-radius:8px;padding:2px 8px}
 @keyframes water{to{background-position:48px 0,0 0}}
@@ -271,6 +271,32 @@ body{padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-i
 .ftr.giant{transform-origin:50% 100%;scale:1.3;z-index:2}.ftr.giant.back{scale:1.1}
 .proj{position:fixed;width:10px;height:10px;margin:-5px 0 0 -5px;background:#ffd60a;border:2px solid #111;box-shadow:0 0 8px #ffd60a;z-index:61;pointer-events:none}
 img.hero-svg{image-rendering:pixelated}
+#progBox{margin:8px auto;max-width:640px;background:#fff3c4;border:3px solid #111;border-radius:10px;padding:8px;text-align:center;font-size:14px}
+#progBox .pnext{margin:4px 0;font-weight:bold;color:#7b2cbf}#progBox button{font-size:12px;padding:3px 8px}
+.lvlup{margin-top:8px;padding:8px;border:3px solid #111;border-radius:10px;background:#ffd60a;font-weight:bold;animation:pop .5s}.lvlup.lose{background:#eee}
+#progBtn{background:#7b2cbf;color:#fff}
+.ftr.a-speed .pix{animation:ihop .5s steps(2) infinite}
+.ftr.a-brawler .pix{animation:ibreath 1.6s ease-in-out infinite;transform-origin:50% 100%}
+.ftr.a-giant .pix{animation:istomp 1.4s steps(2) infinite}
+.ftr.a-ranged .pix{animation:iaim 1.8s ease-in-out infinite;transform-origin:50% 100%}
+.ftr.a-mystic .pix{animation:ifloat 2s ease-in-out infinite;filter:drop-shadow(0 0 4px #c77dffaa)}
+.ftr.a-blade .pix{animation:icrouch 1.2s ease-in-out infinite;transform-origin:50% 100%}
+.ftr.a-support .pix{animation:isway 2.2s ease-in-out infinite;transform-origin:50% 100%}
+.ftr.fighting .pix,.ftr.walking .pix,.ftr.stunned .pix,.ftr.kofade .pix{animation:none}
+@keyframes ihop{50%{transform:translateY(-6%)}}
+@keyframes ibreath{50%{transform:scale(1.03,.97)}}
+@keyframes istomp{0%,100%{transform:translateY(0)}50%{transform:translateY(-2%) rotate(-1.5deg)}}
+@keyframes iaim{50%{transform:rotate(2deg) translateX(2%)}}
+@keyframes ifloat{50%{transform:translateY(-8%)}}
+@keyframes icrouch{0%,100%{transform:scaleY(.94)}50%{transform:scaleY(.9) translateX(2%)}}
+@keyframes isway{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2deg)}}
+.ftr.blur .pix{filter:blur(1px) drop-shadow(-8px 0 0 #fff6)}
+.proj.orb{width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;background:radial-gradient(#fff,#c77dff 60%,#7209b7);box-shadow:0 0 12px #c77dff}
+.pring{position:fixed;width:20px;height:20px;margin:-10px 0 0 -10px;border:4px solid #80ffdb;border-radius:50%;pointer-events:none;z-index:60;animation:pring .5s ease-out forwards}
+@keyframes pring{to{transform:scale(5);opacity:0}}
+.gshake{animation:gshake .4s linear}
+@keyframes gshake{20%{transform:translate(-4px,2px)}40%{transform:translate(4px,-2px)}60%{transform:translate(-3px,1px)}80%{transform:translate(2px,0)}}
+@media (prefers-reduced-motion:reduce){.ftr .pix{animation:none!important}}
 </style></head><body>
 <h1>⚡ SUPER CLASH ⚡</h1>
 <div id="top"><button id="helpBtn">How to Play</button><button id="restartBtn">Restart</button><button id="homeBtn">🏠 Home</button><label class="spd">🎬 Fights: <select id="speedSel"><option value="1">Normal</option><option value="2">Fast</option><option value="99">Skip</option></select></label></div>
@@ -290,7 +316,7 @@ img.hero-svg{image-rendering:pixelated}
 <div class="decks" id="decks"></div>
 <div id="builder"><div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px"><b style="font-size:20px">🛠 BUILD YOUR SQUAD: pick 8 different heroes</b><span id="bcount"></span>
 <span><button id="bFill">Auto-fill</button> <button id="bClear">Clear</button></span></div><div class="squad" id="squad"></div><div id="slots"></div><div style="text-align:center;font-weight:bold;margin:6px">Tap a hero to add or remove it</div><div class="bgrid" id="bgrid"></div></div>
-<div id="homeBar"><button id="homeHelp">How to Play</button><label class="spd">🤖 AI: <select id="diffSel"><option value="easy">Easy</option><option value="normal">Normal</option><option value="hard">Hard</option></select></label><button id="battleBtn">⚔️ BATTLE!</button><button id="onlineBtn">🌐 Play Online</button></div><div id="vsInfo" style="text-align:center;font-weight:bold"></div></div>
+<div id="homeBar"><button id="homeHelp">How to Play</button><label class="spd">🤖 AI: <select id="diffSel"><option value="easy">Easy</option><option value="normal">Normal</option><option value="hard">Hard</option></select></label><button id="battleBtn">⚔️ BATTLE!</button><button id="progBtn">🏆 Progression</button><button id="onlineBtn">🌐 Play Online</button></div><div id="vsInfo" style="text-align:center;font-weight:bold"></div><div id="progBox"></div></div>
 <div id="arena"><div class="arenaBox"><div class="sky"></div><div class="city"></div><div id="arenaTitle"></div><div id="stage"></div><div class="floor"></div><button id="skipFight">Skip ⏭</button></div></div>
 <div class="overlay" id="online"><div class="panel helpPanel"><div class="helpHead"><h2>ONLINE 1v1</h2><button id="xOnline" aria-label="Close">✕</button></div><div class="helpBody">
 <p>Play a friend on another device. You each bring your <b>own active squad</b> (8 heroes).</p>
@@ -308,17 +334,17 @@ img.hero-svg{image-rendering:pixelated}
 <li>You hold up to <b>2 cards</b>; the <b>NEXT</b> card is shown on the right. When you play a hero, the next card in your cycle fills its slot. A hero on the board stays <b>out</b> of the cycle until it is knocked out, then it goes to the back of the cycle. With 4+ heroes on the board your hand may run short (empty slots), so trade wisely!</li>
 <li>⚡ <b>Escalating energy:</b> each turn your max Energy grows and refills. Rounds 1–5: +1 per turn · rounds 6–10: +2 · round 11+: +3 (no cap). A <b>POWER SURGE!</b> banner shows when your rate goes up. Max 4 heroes on the board.</li><li>You go first; the villains get +2 bonus ⚡ on their 1st and 4th turns to even it out.</li><li>⏰ <b>Overtime &amp; time limit:</b> from round 10, each HQ takes storm damage at the start of its turn: 2, then 4, 6, 8… The match ends after <b>round 20</b>: the HQ with more HP wins (equal HP = draw). Watch the <b>Round X/20</b> counter.</li>
 <li>Heroes can attack the turn <i>after</i> they're played (unless <b>Swift</b>). The whole battle happens in the arena: <b>tap a hand card</b> to deploy that hero, <b>tap your glowing hero</b> to select it, then tap a glowing enemy or the enemy HQ to attack. Tap an enemy (or the ⓘ / long-press on your own heroes) to see who they are. Only your own hand is visible.</li>
-<li>🌐 <b>Online 1v1:</b> tap <b>Play Online</b>, enter your name, then <b>Host</b> to get a 5-letter code (share it) or type a friend's code and <b>Join</b>. Each player uses their own active squad; the host goes first. Leaving the match counts as a forfeit. Some strict networks (work/school Wi-Fi, some mobile carriers) may block the direct connection.</li><li>🗿 <b>Giants</b> are big and tough but cost more. They wait <b>2 of your turns</b> (⏳2 → ⏳1) before attacking, and can <b>only attack the enemy HQ</b> (they ignore Taunt). Enemies can still attack them.</li><li>🏹 <b>Ranged</b> heroes fire projectiles: a hero they shoot <b>can&#39;t hit back</b>. They&#39;re a bit frailer to make up for it.</li><li>Hero vs hero: both deal their Power to each other. Attacking the HQ takes no damage back.</li>
+<li>🌐 <b>Online 1v1:</b> tap <b>Play Online</b>, enter your name, then <b>Host</b> to get a 5-letter code (share it) or type a friend's code and <b>Join</b>. Each player uses their own active squad; the host goes first. Leaving the match counts as a forfeit. Some strict networks (work/school Wi-Fi, some mobile carriers) may block the direct connection.</li><li>🗿 <b>Giants</b> are big and tough but cost more. They wait <b>2 of your turns</b> (⏳2 → ⏳1) before attacking, and can <b>only attack the enemy HQ</b> (they ignore Taunt). Enemies can still attack them.</li><li>🏹 <b>Ranged</b> heroes fire projectiles: a hero they shoot <b>can&#39;t hit back</b>. They&#39;re a bit frailer to make up for it.</li><li>🏆 <b>Progression</b>: climb levels by winning. Each win levels you up; a loss keeps your level (or drops one if you tick that option). Opponents get tougher: Easy → Normal → Hard AI, then smarter squads, extra HQ HP, extra energy and buffed heroes. Every 5th level is a 👑 <b>boss</b>. Your level, streak and best are saved.</li><li>Hero vs hero: both deal their Power to each other. Attacking the HQ takes no damage back.</li>
 <li>If the enemy has a <b>Taunt</b> 🛡️‍ hero, you must attack it first.</li>
 <li>Abilities: 🛡 Shield blocks the first hit · 💚 Heal restores HQ HP on play · ⚔️ Double Strike attacks twice · 💫 Stun freezes the target for its next turn · 🏃 Swift attacks right away · 🧱 Taunt (only while the hero is undamaged) · 🩸 Drain heals your HQ by damage dealt · 💥 Blast zaps an enemy on play · 📣 Rally gives allies +1 Power on play.</li>
 </ul></div><div class="helpFoot"><button id="closeHelp">Got it, let's play!</button></div></div></div>
 <div class="overlay" id="end"><div class="panel" style="text-align:center"><h2 id="endTitle"></h2><p id="endText"></p><button id="againBtn">Rematch</button> <button id="endHome">🏠 Choose New Deck</button></div></div>
 
 <script id="logic">
-var ABIL={shield:{i:"🛡",t:"Shield: blocks the first damage taken"},heal:{i:"💚",t:"Heal: restore 4 HQ HP on play"},
+var ABIL={none:{i:"",t:""},shield:{i:"🛡",t:"Shield: blocks the first damage taken"},heal:{i:"💚",t:"Heal: restore 2 HQ HP on play"},
 double:{i:"⚔️",t:"Double Strike: attacks twice per turn"},stun:{i:"💫",t:"Stun: target can't attack next turn"},
 swift:{i:"🏃",t:"Swift: can attack immediately"},taunt:{i:"🧱",t:"Taunt: must be attacked first while at full Health"},
-drain:{i:"🩸",t:"Drain: heals your HQ by damage dealt"},blast:{i:"💥",t:"Blast: deal 2 to a random enemy hero (or HQ) on play"},
+drain:{i:"🩸",t:"Drain: heals your HQ by half the damage dealt (rounded up)"},blast:{i:"💥",t:"Blast: deal 2 to a random enemy hero (or 1 to the HQ) on play"},
 rally:{i:"📣",t:"Rally: other allies gain +1 Power on play"}};
 var HEROES=[
 {n:"Captain Comet",e:"☄️",c:"#ff9f1c",cost:1,p:1,h:2,a:"swift"},
@@ -341,13 +367,13 @@ var HEROES=[
 {n:"Quantum Quill",e:"🪶",c:"#4cc9f0",cost:6,p:5,h:5,a:"swift"},
 {n:"Solar Sentinel",e:"☀️",c:"#ffb703",cost:7,p:6,h:7,a:"rally"},
 {n:"Omega Oracle",e:"🔮",c:"#b5179e",cost:8,p:7,h:8,a:"drain"},
-{n:"Bastion Behemoth",e:"🏰",c:"#495057",cost:4,p:5,h:12,a:"shield",cls:"giant"},
-{n:"Lavaback",e:"🌋",c:"#9d0208",cost:5,p:6,h:10,a:"blast",cls:"giant"},
-{n:"Thunderhoof",e:"🐂",c:"#7f5539",cost:4,p:5,h:9,a:"rally",cls:"giant"},
-{n:"Sparrow Shot",e:"🏹",c:"#606c38",cost:3,p:2,h:2,a:"swift",cls:"ranged"},
-{n:"Prism Archer",e:"🔷",c:"#4361ee",cost:3,p:2,h:2,a:"blast",cls:"ranged"},
-{n:"Hex Slinger",e:"🪄",c:"#5a189a",cost:3,p:2,h:2,a:"stun",cls:"ranged"},
-{n:"Nova Gunner",e:"🔫",c:"#fca311",cost:4,p:3,h:4,a:"double",cls:"ranged"}];
+{n:"Bastion Behemoth",e:"🏰",c:"#495057",cost:3,p:4,h:13,a:"none",cls:"giant"},
+{n:"Lavaback",e:"🌋",c:"#9d0208",cost:3,p:5,h:9,a:"none",cls:"giant"},
+{n:"Thunderhoof",e:"🐂",c:"#7f5539",cost:2,p:3,h:6,a:"none",cls:"giant"},
+{n:"Sparrow Shot",e:"🏹",c:"#606c38",cost:2,p:1,h:1,a:"none",cls:"ranged"},
+{n:"Prism Archer",e:"🔷",c:"#4361ee",cost:3,p:3,h:3,a:"none",cls:"ranged"},
+{n:"Hex Slinger",e:"🪄",c:"#5a189a",cost:3,p:3,h:2,a:"none",cls:"ranged"},
+{n:"Nova Gunner",e:"🔫",c:"#fca311",cost:3,p:3,h:4,a:"none",cls:"ranged"}];
 
 // Parametric humanoid portrait: [skin,hair,hairStyle,suit,accent,mask,cape,lashes]
 // hairStyle 0 short,1 long,2 spiky,3 bald,4 bun,5 mohawk ; mask 0 none,1 eye-mask,2 helmet,3 visor,4 hood,5 goggles
@@ -439,13 +465,13 @@ var DECKS=[
 {id:"bal",n:"Justice Alliance",e:"⭐",c:"#e63946",sig:[8,14,18],d:"Balanced. A bit of everything: the classic starter deck.",
  list:L(["Captain Comet","Pixel Kid","Nurse Nova","Bolt Runner","Iron Turtle","Frost Fang","Lady Lumen","Twin Blade","Megaphone Max","Vampira Velvet","Granite Guard","Storm Siren","Dr. Mendwell","Gravity Girl","Blaze Phoenix","Shadow Lynx","Titan Tide","Quantum Quill","Solar Sentinel","Omega Oracle","Captain Comet","Pixel Kid","Nurse Nova","Bolt Runner","Iron Turtle","Frost Fang","Lady Lumen","Twin Blade","Megaphone Max","Vampira Velvet"])}];
 function energyGain(r){var g=1;for(var i=0;i<CFG.surge.length;i++)if(r>=CFG.surge[i])g=i+2;return g}
-var CFG={surge:[6,11],maxE:99,hp:20,deck:8,hand:2,board:4,overtime:10,otStep:2,maxRound:20,tauntMode:"fullhp",p2bonus:[2,0,0,2]};
+var CFG={surge:[4,8],maxE:99,hp:8,deck:8,hand:2,board:4,overtime:6,otStep:2,maxRound:12,tauntMode:"fullhp",aiSlip:{normal:.2,hard:.1},p2bonus:[1,0,1]};
 function randomDeck(){var a=HEROES.map(function(h,i){return i});for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a.slice(0,CFG.deck)}
 // Deck is a rotating queue of hero indices: hand holds 2, the rest wait in order.
 function makeDeck(list){var d=(list&&list.length===CFG.deck?list:randomDeck()).slice();
  for(var i=d.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=d[i];d[i]=d[j];d[j]=t}return d;}
 function mk(h){return {id:++uid,n:h.n,e:h.e,c:h.c,cost:h.cost,p:h.p,h:h.h,maxH:h.h,a:h.a,cls:h.cls||"",wait:h.cls==="giant"?2:0,shield:h.a==="shield",attacks:0,stun:0,sick:true}}
-function newGame(d0,d1){var G={hp:[CFG.hp,CFG.hp],deck:[makeDeck(d0),makeDeck(d1)],hand:[[],[]],board:[[],[]],maxE:[0,0],bonus:[0,[].concat(CFG.p2bonus)],e:[0,0],turn:0,over:false,winner:null,log:[],fx:[]};
+function newGame(d0,d1){var G={map:Math.floor(Math.random()*6),hp:[CFG.hp,CFG.hp],deck:[makeDeck(d0),makeDeck(d1)],hand:[[],[]],board:[[],[]],maxE:[0,0],bonus:[0,[].concat(CFG.p2bonus)],e:[0,0],turn:0,over:false,winner:null,log:[],fx:[]};
  [0,1].forEach(function(s){while(G.hand[s].length<CFG.hand)G.hand[s].push(mk(HEROES[G.deck[s].shift()]))});startTurn(G,0);return G}
 function log(G,m){G.log.push(m);if(G.log.length>60)G.log.shift()}
 function draw(G,s){if(!G.deck[s].length){G.hp[s]-=2;log(G,(s?"Villains":"You")+" are out of cards: HQ takes 2 fatigue!");checkWin(G);return}
@@ -457,6 +483,7 @@ function startTurn(G,s){G.turn=s;G.turns=(G.turns||0)+1;
  var rnd=Math.ceil(G.turns/2),gain=energyGain(rnd);G.gain=G.gain||[0,0];G.surge=G.surge||[false,false];G.surge[s]=G.gain[s]>0&&gain>G.gain[s];G.gain[s]=gain;
  G.maxE[s]=Math.min(CFG.maxE,G.maxE[s]+gain);if(G.surge[s])log(G,"⚡ POWER SURGE! "+(s?"Villains":"You")+" now gain +"+gain+" max energy per turn.");var bn=G.bonus?G.bonus[s]:0;if(Array.isArray(bn)){G.e[s]=G.maxE[s]+(bn.shift()||0)}else{G.e[s]=G.maxE[s]+(bn||0);if(G.bonus)G.bonus[s]=0}
  G.board[s].forEach(function(c){c.sick=false;c.age=(c.age||0)+1;if(c.wait>0)c.wait--;if(c.stun>0){c.stun--;c.attacks=0}else c.attacks=c.a==="double"?2:1;});}
+function hqD(n){return n>0?Math.ceil(n/2):0}
 function canAttack(c){if(c.wait>0)return false;return !c.sick&&c.attacks>0&&c.stun===0||(c.a==="swift"&&c.attacks>0&&c.stun===0)}
 function isTaunt(c){if(!c||c.a!=="taunt")return false;if(CFG.tauntMode==="fullhp")return c.h>=c.maxH;if(CFG.tauntMode==="turns2")return (c.age||0)<2;return true}
 function hasTaunt(G,s){return G.board[s].some(function(c){return isTaunt(c)})}
@@ -467,25 +494,25 @@ function refill(G,s){while(G.hand[s].length<CFG.hand&&G.deck[s].length)G.hand[s]
 function cleanup(G){[0,1].forEach(function(s){G.board[s]=G.board[s].filter(function(c){if(c.h<=0){log(G,c.n+" is knocked out and returns to the back of the cycle!");G.deck[s].push(heroIdx(c.n));return false}return true});refill(G,s)});}
 function checkWin(G){if(G.over)return;if(G.hp[0]<=0||G.hp[1]<=0){G.over=true;G.winner=G.hp[1]<=0&&G.hp[0]>0?0:(G.hp[0]<=0&&G.hp[1]>0?1:-1)}}
 function play(G,s,cid){if(G.over||G.turn!==s)return false;var i=G.hand[s].findIndex(function(c){return c.id===cid});if(i<0)return false;var c=G.hand[s][i];
- if(c.cost>G.e[s]||G.board[s].length>=CFG.board)return false;G.e[s]-=c.cost;G.hand[s].splice(i,1);if(G.deck[s].length)G.hand[s].splice(i,0,mk(HEROES[G.deck[s].shift()]));c.sick=true;c.attacks=c.a==="swift"?1:0;G.board[s].push(c);
+ if(c.cost>G.e[s]||G.board[s].length>=CFG.board)return false;G.e[s]-=c.cost;G.hand[s].splice(i,1);if(G.deck[s].length)G.hand[s].splice(i,0,mk(HEROES[G.deck[s].shift()]));if(G.mods)G.hand[s].forEach(function(x){buffC(G,x,s)});c.sick=true;c.attacks=c.a==="swift"?1:0;G.board[s].push(c);
  var who=s?"Villains":"You";log(G,who+" played "+c.n+".");var o=1-s;
- if(c.a==="heal"){G.hp[s]=Math.min(CFG.hp,G.hp[s]+4);log(G,c.n+" heals HQ for 4.");}
+ if(c.a==="heal"){G.hp[s]=Math.min((G.maxHp?G.maxHp[s]:CFG.hp),G.hp[s]+2);log(G,c.n+" heals HQ for 2.");}
  if(c.a==="rally"){G.board[s].forEach(function(a){if(a!==c)a.p++});log(G,c.n+" rallies the team: +1 Power!");}
  if(c.a==="blast"){if(G.board[o].length){var t=G.board[o][Math.floor(Math.random()*G.board[o].length)];dmg(G,t,2);log(G,c.n+" blasts "+t.n+"!");cleanup(G)}
-  else{G.hp[o]-=2;G.fx.push({id:"base"+o,t:"-2"});log(G,c.n+" blasts the enemy HQ for 2!");checkWin(G)}}
+  else{G.hp[o]-=1;G.fx.push({id:"base"+o,t:"-1"});log(G,c.n+" blasts the enemy HQ for 1!");checkWin(G)}}
  return true}
 function attack(G,s,aid,tid){if(G.over||G.turn!==s)return false;var a=G.board[s].find(function(c){return c.id===aid});if(!a||!canAttack(a)||!legalTarget(G,s,tid,aid))return false;
  a.attacks--;var o=1-s;
- if(tid==="base"){G.hp[o]-=a.p;G.fx.push({id:"base"+o,t:"-"+a.p});log(G,a.n+" hits the enemy HQ for "+a.p+"!");if(a.a==="drain"){G.hp[s]=Math.min(CFG.hp,G.hp[s]+a.p)}}
+ if(tid==="base"){var hd=hqD(a.p);G.hp[o]-=hd;G.fx.push({id:"base"+o,t:"-"+hd});log(G,a.n+" hits the enemy HQ for "+hd+"!");if(a.a==="drain"){G.hp[s]=Math.min((G.maxHp?G.maxHp[s]:CFG.hp),G.hp[s]+hqD(a.p))}}
  else{var t=G.board[o].find(function(c){return c.id===tid});var d1=dmg(G,t,a.p);if(a.cls!=="ranged")dmg(G,a,t.p);log(G,a.n+(a.cls==="ranged"?" shoots ":" clashes with ")+t.n+"!");
-  if(a.a==="stun"&&t.h>0){t.stun=1;t.attacks=0;log(G,t.n+" is stunned!")}if(a.a==="drain"&&d1)G.hp[s]=Math.min(CFG.hp,G.hp[s]+d1);cleanup(G)}
+  if(a.a==="stun"&&t.h>0){t.stun=1;t.attacks=0;log(G,t.n+" is stunned!")}if(a.a==="drain"&&d1)G.hp[s]=Math.min((G.maxHp?G.maxHp[s]:CFG.hp),G.hp[s]+hqD(d1));cleanup(G)}
  checkWin(G);return true}
 function endTurn(G){if(G.over)return;startTurn(G,1-G.turn);}
 // Simple AI: play most expensive affordable cards, then attack sensibly.
 // ---------- AI ----------
 // Easy = original heuristic; Normal = greedy 1-step search with board evaluation; Hard = 2-step lookahead.
 function cloneG(G){return JSON.parse(JSON.stringify(G))}
-function powOf(G,s,ready){return G.board[s].reduce(function(t,c){if(c.stun)return t;if(ready&&!canAttack(c))return t;return t+c.p*(ready?c.attacks:(c.a==="double"?2:1))},0)}
+function powOf(G,s,ready){return G.board[s].reduce(function(t,c){if(c.stun)return t;if(ready&&!canAttack(c))return t;return t+hqD(c.p)*(ready?c.attacks:(c.a==="double"?2:1))},0)}
 function evalG(G,s){var o=1-s;if(G.over)return G.winner===s?1e6:(G.winner===-1?0:-1e6);
  function bv(c,mine){var v=c.p*2+c.h*1.2+(c.shield?c.p+1:0)+(c.a==="double"?c.p:0)+(c.a==="drain"?c.p*.5:0);if(isTaunt(c))v+=mine&&G.hp[s]<12?4:2;if(c.stun)v-=c.p*1.5;return v}
  var v=(G.hp[s]-G.hp[o])*2.5;
@@ -514,7 +541,9 @@ function aiChoose(G,s,lvl){var o=1-s;if(G.over)return null;
   else{var myPow=powOf(G,s,true);if(myPow>=G.hp[o])tid="base";else{var good=G.board[o].filter(function(t){return (t.h<=a.p&&!t.shield)&&(t.p<a.h||t.p>=a.p)}).sort(function(x,y){return y.p-x.p});tid=good.length&&Math.random()<.8?good[0].id:"base"}}
   return {t:"atk",a:a.id,tid:tid}}
  var A=actionsFor(G,s);if(!A.length)return null;var depth=lvl==="hard"?2:1,base=evalG(G,s),best=null,bv=-Infinity;
- A.forEach(function(x){var v=scoreA(G,s,x,depth);if(v>bv){bv=v;best=x}});
+ var sc=A.map(function(x){var v=scoreA(G,s,x,depth);if(v>bv){bv=v;best=x}return [v,x]});
+ // softened AI: occasionally takes the 2nd/3rd best move instead of the best
+ var slip=(CFG.aiSlip||{})[lvl]||0;if(slip&&Math.random()<slip&&sc.length>1){sc.sort(function(a,b){return b[0]-a[0]});var alt=sc[1+Math.floor(Math.random()*Math.min(2,sc.length-1))];if(alt[0]>=base-0.01)return alt[1]}
  // plays and attacks that don't lose value are taken (attacking base is free value)
  return bv>=base-0.01?best:null}
 // Smart squad: a sensible energy curve (2 cheap, 2 mid, 1 finisher) weighted toward strong heroes/synergy.
@@ -523,23 +552,38 @@ function smartDeck(){var pick=[];function from(f,n){var pool=HEROES.map(function
   for(var k=0;k<n&&pool.length;k++){var tot=0,w=pool.map(function(i){var t=TIER[HEROES[i].n]||2;if(HEROES[i].a==="taunt"&&pick.some(function(j){return HEROES[j].a==="taunt"}))t*=.3;tot+=t*t;return t*t});
    var r=Math.random()*tot,j=0;while(r>w[j]){r-=w[j];j++}pick.push(pool[j]);pool.splice(j,1)}}
  from(function(h){return h.cost<=2},3);from(function(h){return h.cost>=3&&h.cost<=4},3);from(function(h){return h.cost>=5},2);return pick}
+var ARCH={"Captain Comet":"speed","Bolt Runner":"speed","Quantum Quill":"speed","Pixel Kid":"speed","Iron Turtle":"brawler","Granite Guard":"brawler","Titan Tide":"brawler","Solar Sentinel":"brawler",
+ "Omega Oracle":"mystic","Storm Siren":"mystic","Gravity Girl":"mystic","Lady Lumen":"mystic","Frost Fang":"mystic","Blaze Phoenix":"mystic","Twin Blade":"blade","Shadow Lynx":"blade","Vampira Velvet":"blade",
+ "Nurse Nova":"support","Dr. Mendwell":"support","Megaphone Max":"support"};
+function archOf(c){return c.cls==="giant"?"giant":c.cls==="ranged"?"ranged":(ARCH[c.n]||"brawler")}
+var BOSSES=["Doctor Dread","Queen Quake","Baron Blackout","The Overmind","Malice Prime","Eclipse Emperor","Null King","Omega Tyrant"];
+var VILNAMES=["Rookie Rascals","Alley Goons","Mischief Crew","Chrome Gang","Night Raiders","Iron Syndicate","Storm Cabal","Venom League","Shadow Council"];
+// Progression opponent for level L: difficulty, squad quality, HQ HP bonus, extra energy, hero power/health buffs, boss every 5 levels
+function progOpp(L){L=Math.max(1,L|0);var boss=L%5===0,o;
+ var T=[null,{d:"easy",sq:"random",hp:-3,e:0},{d:"easy",sq:"random",hp:-2,e:0},{d:"easy",sq:"smart",hp:-1,e:0},{d:"normal",sq:"random",hp:-1,e:0},{d:"normal",sq:"smart",hp:0,e:0},
+  {d:"normal",sq:"smart",hp:0,e:0},{d:"hard",sq:"smart",hp:0,e:0},{d:"hard",sq:"smart",hp:1,e:0},{d:"hard",sq:"smart",hp:1,e:0},{d:"hard",sq:"smart",hp:2,e:0}];
+ if(L<=10)o=Object.assign({pw:0,hb:0},T[L]);else{var k=L-10;o={d:"hard",sq:"smart",hp:Math.min(10,2+Math.floor(k/2)),e:k>=16?2:k>=8?1:0,pw:k>=12?1:0,hb:Math.min(3,Math.floor(k/6))};if(boss)o.hp+=1}
+ o.lvl=L;o.boss=boss;o.name=boss?"👑 "+BOSSES[(L/5-1)%BOSSES.length]:VILNAMES[Math.min(VILNAMES.length-1,Math.floor((L-1)/2))];return o}
+function applyProg(G,o){G.mods=o;G.hp[1]+=o.hp||0;G.maxHp=[CFG.hp,CFG.hp+(o.hp||0)];if(o.e){var b=G.bonus[1];if(Array.isArray(b))b[0]=(b[0]||0)+o.e;else G.bonus[1]=(b||0)+o.e}
+ G.hand[1].forEach(function(c){buffC(G,c,1)});return G}
+function buffC(G,c,s){if(s!==1||!G.mods||c.bf)return;c.bf=1;c.p+=G.mods.pw||0;c.h+=G.mods.hb||0;c.maxH+=G.mods.hb||0}
 function aiDeckFor(lvl){return lvl==="easy"?randomDeck():smartDeck()}
 function aiTurn(G,s,lvl){s=s===undefined?1:s;lvl=lvl||"easy";var guard=0;
  while(!G.over&&guard++<40){var x=aiChoose(G,s,lvl);if(!x)break;if(!applyA(G,s,x)){if(x.t==="atk"){var a=G.board[s].find(function(c){return c.id===x.a});if(a)a.attacks=0}else break}}
  if(!G.over)endTurn(G);}
-if(typeof module!=="undefined")module.exports={newGame:newGame,play:play,attack:attack,endTurn:endTurn,aiTurn:aiTurn,canAttack:canAttack,HEROES:HEROES,DECKS:DECKS,CFG:CFG,randomDeck:randomDeck,smartDeck:smartDeck,aiChoose:aiChoose};
+if(typeof module!=="undefined")module.exports={newGame:newGame,play:play,attack:attack,endTurn:endTurn,aiTurn:aiTurn,canAttack:canAttack,HEROES:HEROES,DECKS:DECKS,CFG:CFG,randomDeck:randomDeck,smartDeck:smartDeck,aiChoose:aiChoose,progOpp:progOpp,applyProg:applyProg};
 </script>
 <script id="ui">
 var G,sel=null,busy=false,$=function(i){return document.getElementById(i)};
 window.onerror=function(m){document.title="JSERROR: "+m};
 function cardEl(c,where){var d=document.createElement("div");d.className="card";d.dataset.id=c.id;d.style.setProperty("--c",c.c);
  if(where==="back"){d.className="card back";return d}
- d.innerHTML='<div class="cost">'+c.cost+'</div>'+(c.cls?'<div class="clsb">'+CLS[c.cls].i+' '+CLS[c.cls].n+'</div>':'')+'<div class="nm" title="'+c.n+'">'+c.n+'</div><div class="por">'+(where==="board"&&!PORTRAIT_IMG[c.n]?getFighter(c):getPortrait(c))+'</div><div class="ab">'+ABIL[c.a].i+" "+ABIL[c.a].t+'</div><div class="stats"><span class="st pw">'+c.p+'</span><span class="st hpb">'+c.h+'</span></div>';
+ d.innerHTML='<div class="cost">'+c.cost+'</div>'+(c.cls?'<div class="clsb">'+CLS[c.cls].i+' '+CLS[c.cls].n+'</div>':'')+'<div class="nm" title="'+c.n+'">'+c.n+'</div><div class="por">'+(where==="board"&&!PORTRAIT_IMG[c.n]?getFighter(c):getPortrait(c))+'</div><div class="ab">'+(c.cls&&c.a==="none"?CLS[c.cls].i+" "+CLS[c.cls].t:ABIL[c.a].i+" "+ABIL[c.a].t)+'</div><div class="stats"><span class="st pw">'+c.p+'</span><span class="st hpb">'+c.h+'</span></div>';
  var b=[];if(c.stun)b.push("💫");if(where==="board"&&c.sick&&c.a!=="swift")b.push("💤");if(b.length)d.insertAdjacentHTML("beforeend",'<div class="badge">'+b.join("")+'</div>');
  if(c.shield)d.classList.add("shield");if(c.stun)d.classList.add("stunned");if(isTaunt(c))d.classList.add("taunt");d.title=ABIL[c.a].t;return d}
-function render(){var G=VIEW||window.G;var my=G.turn===0&&!busy&&!G.over&&!VIEW;
- var on=NET.on||NET.was;$("aiBase").querySelector("b").textContent=on?NET.oppName.toUpperCase()+" HQ":"VILLAIN HQ";$("pBase").querySelector("b").textContent=on?NET.myName.toUpperCase()+" HQ":"HERO HQ";$("pHp").textContent="❤ "+Math.max(0,Math.min(CFG.hp,G.hp[0]))+"/"+CFG.hp;$("aiHp").textContent="❤ "+Math.max(0,Math.min(CFG.hp,G.hp[1]))+"/"+CFG.hp;
- $("pBar").style.width=Math.max(0,Math.min(100,100*G.hp[0]/CFG.hp))+"%";$("aiBar").style.width=Math.max(0,Math.min(100,100*G.hp[1]/CFG.hp))+"%";$("pHq").src=hqSprite(0);$("aiHq").src=hqSprite(1);buildDecor();document.body.classList.add("inbattle");$("aiInfo").textContent=" · 🂠 hidden";$("pInfo").textContent=" · cycle "+(G.hand[0].length+G.deck[0].length)+"/"+CFG.deck;
+function render(){var G=VIEW||window.G;if(G&&G.map!=null)applyMap(G.map);var my=G.turn===0&&!busy&&!G.over&&!VIEW;
+ var on=NET.on||NET.was;$("aiBase").querySelector("b").textContent=on?NET.oppName.toUpperCase()+" HQ":"VILLAIN HQ";$("pBase").querySelector("b").textContent=on?NET.myName.toUpperCase()+" HQ":"HERO HQ";$("pHp").textContent="❤ "+Math.max(0,Math.min(CFG.hp,G.hp[0]))+"/"+CFG.hp;var MX1=G.maxHp?G.maxHp[1]:CFG.hp;$("aiHp").textContent="❤ "+Math.max(0,Math.min(MX1,G.hp[1]))+"/"+MX1;
+ $("pBar").style.width=Math.max(0,Math.min(100,100*G.hp[0]/CFG.hp))+"%";$("aiBar").style.width=Math.max(0,Math.min(100,100*G.hp[1]/MX1))+"%";$("pHq").src=hqSprite(0);$("aiHq").src=hqSprite(1);buildDecor();document.body.classList.add("inbattle");$("aiInfo").textContent=" · 🂠 hidden";$("pInfo").textContent=" · cycle "+(G.hand[0].length+G.deck[0].length)+"/"+CFG.deck;
  var gn=(G.gain&&G.gain[0])||1,rd=Math.ceil((G.turns||1)/2),nx=CFG.surge.find(function(r){return r>rd});
  $("energy").innerHTML='<span class="ebig">⚡ '+G.e[0]+'<small>/'+G.maxE[0]+'</small></span> <span class="erate">+'+gn+'/turn'+(nx?' · surge in '+(nx-rd)+' rd':' · MAX RATE')+'</span> <span class="eround'+(rd>=CFG.overtime?' ot':'')+'">Round '+Math.min(rd,CFG.maxRound)+'/'+CFG.maxRound+'</span> <span class="eturn">'+(G.turn===0?"YOUR TURN":(NET.on?esc(NET.oppName).toUpperCase()+"'S TURN":"VILLAINS' TURN"))+'</span>';
  if(G.turn===0&&!G.over&&G.shownT!==G.turns){G.shownT=G.turns;energyPop("+"+gn+" ⚡ energy this turn");if(G.surge&&G.surge[0])surgeBanner(gn);else if(rd===CFG.overtime-1)bigBanner("⚠️ OVERTIME NEXT ROUND","HQs start taking storm damage");else if(rd===CFG.overtime)bigBanner("⏰ OVERTIME!","Storm damage grows every round");else if(rd===CFG.maxRound)bigBanner("🏁 FINAL ROUND!","Most HQ HP after this round wins")}
@@ -574,13 +618,38 @@ function hqSprite(side,small){return pixSprite("hq"+side+(small?"s":""),32,38,fu
  r(6,16,4,8,ban);r(6,22,4,2,ban2);r(22,16,4,8,ban);r(22,22,4,2,ban2);
  // shadow base
  r(3,35,26,3,"#0004")})}
-function decoSprite(k){return pixSprite("d"+k,16,16,function(r){if(k==="tree"){r(6,11,4,5,"#5a3a1a");r(2,3,12,9,"#111");r(3,2,10,9,"#2d8a3e");r(4,3,5,3,"#4cbb5a");r(1,6,14,4,"#2d8a3e");r(9,7,3,2,"#1f6a2c")}
+var MAPS=[
+ {n:"Grass Meadow",e:"🌿",v:{},deco:["tree","bush","rock"]},
+ {n:"Snowy Peaks",e:"❄️",v:{"--g1":"#eef6fb","--g2":"#dbe9f2","--ge":"#9fb8c8","--w1":"#9aa8b5","--w2":"#86939f","--r1":"#9fe3ff","--r2":"#c9f1ff","--r3":"#7ccbea","--b1":"#8d6e52","--b2":"#6b513b","--b3":"#b08d6e","--b4":"#4a3727"},deco:["pine","snowbush","icerock"]},
+ {n:"Desert Sands",e:"🏜️",v:{"--g1":"#f2d38a","--g2":"#e8c574","--ge":"#c49a4a","--w1":"#c9a46a","--w2":"#b38f58","--r1":"#2fc4c4","--r2":"#5fe0d6","--r3":"#22a3a8","--b1":"#c79a5b","--b2":"#9c7440","--b3":"#e0b97c","--b4":"#6e4f28"},deco:["palm","cactus","sandrock"]},
+ {n:"Lava Forge",e:"🌋",v:{"--g1":"#5a4a4a","--g2":"#4b3c3c","--ge":"#2b1f1f","--w1":"#3a3030","--w2":"#2c2424","--r1":"#ff7b00","--r2":"#ffb703","--r3":"#e63946","--rg":"#ff7b00","--b1":"#6c6c6c","--b2":"#4a4a4a","--b3":"#8e8e8e","--b4":"#2e2e2e"},deco:["deadtree","ember","lavarock"]},
+ {n:"Spooky Night",e:"🎃",v:{"--g1":"#3d4a5c","--g2":"#34404f","--ge":"#1d2430","--w1":"#4a4458","--w2":"#3c3748","--r1":"#5b4b8a","--r2":"#7a6bb0","--r3":"#45386e","--b1":"#5b4a3a","--b2":"#3f3328","--b3":"#7a6450","--b4":"#2a221a"},deco:["deadtree","tomb","pumpkin"]},
+ {n:"Jungle Ruins",e:"🌴",v:{"--g1":"#4f9a3c","--g2":"#468a35","--ge":"#2c5e22","--w1":"#7d8a6a","--w2":"#6b775a","--r1":"#2e8b79","--r2":"#3fae96","--r3":"#22705f","--b1":"#8a6a3a","--b2":"#664c26","--b3":"#a8864f","--b4":"#47331a"},deco:["jtree","fern","mossrock"]}];
+function applyMap(i){var M=MAPS[i]||MAPS[0],f=$("field");if(!f||f.dataset.map===String(i))return;f.dataset.map=String(i);
+ ["--g1","--g2","--ge","--w1","--w2","--r1","--r2","--r3","--rg","--b1","--b2","--b3","--b4"].forEach(function(k){if(M.v[k])f.style.setProperty(k,M.v[k]);else f.style.removeProperty(k)});
+ var d=$("decor");if(d){delete d.dataset.done;buildDecor(M.deco)}}
+function decoSprite(k){return pixSprite("d"+k,16,16,function(r){
+ if(k==="pine"){r(7,12,2,4,"#5a3a1a");r(3,7,10,6,"#111");r(4,7,8,5,"#2f6b4f");r(5,3,6,5,"#111");r(6,3,4,4,"#2f6b4f");r(7,1,2,3,"#111");r(4,7,8,1,"#fff");r(6,3,4,1,"#fff");r(7,1,2,1,"#fff")}
+ else if(k==="snowbush"){r(1,8,14,7,"#111");r(2,7,12,7,"#cfe3ee");r(4,8,4,2,"#fff");r(10,11,3,2,"#a9c4d4")}
+ else if(k==="icerock"){r(3,6,10,9,"#111");r(4,5,8,9,"#8fd3f4");r(5,6,3,4,"#e0f7ff");r(9,10,2,3,"#5aa9cf")}
+ else if(k==="palm"){r(7,6,2,10,"#8a5a2b");r(1,2,14,3,"#111");r(2,2,12,2,"#2e9a3e");r(4,4,3,2,"#2e9a3e");r(10,4,3,2,"#2e9a3e");r(7,4,2,2,"#6b3e1a")}
+ else if(k==="cactus"){r(6,3,4,13,"#111");r(7,3,2,12,"#3b9a4a");r(2,7,4,2,"#3b9a4a");r(2,5,2,3,"#3b9a4a");r(10,8,4,2,"#3b9a4a");r(12,5,2,4,"#3b9a4a")}
+ else if(k==="sandrock"){r(2,9,12,6,"#111");r(3,8,10,6,"#c8955a");r(5,9,4,2,"#e8bb84");r(9,12,3,2,"#9a6b3a")}
+ else if(k==="deadtree"){r(7,6,2,10,"#111");r(7,6,1,9,"#5a4636");r(3,4,5,1,"#5a4636");r(3,2,1,3,"#5a4636");r(9,5,4,1,"#5a4636");r(12,2,1,4,"#5a4636")}
+ else if(k==="ember"){r(4,10,8,5,"#111");r(5,9,6,5,"#3a2a2a");r(6,10,2,2,"#ff7b00");r(9,11,1,1,"#ffd60a");r(7,6,2,3,"#ff7b00");r(7,5,1,1,"#ffd60a")}
+ else if(k==="lavarock"){r(2,9,12,6,"#111");r(3,8,10,6,"#3d3535");r(4,10,5,1,"#ff7b00");r(8,11,3,1,"#e63946");r(5,8,3,1,"#5e5252")}
+ else if(k==="tomb"){r(4,3,8,12,"#111");r(5,4,6,10,"#9aa0a8");r(6,3,4,1,"#9aa0a8");r(7,6,2,5,"#5d636b");r(6,7,4,1,"#5d636b");r(3,14,10,2,"#3a2f2a")}
+ else if(k==="pumpkin"){r(2,6,12,9,"#111");r(3,7,10,7,"#f77f00");r(5,8,1,5,"#c45f00");r(10,8,1,5,"#c45f00");r(7,4,2,3,"#2d6a2e");r(5,9,2,1,"#ffd60a");r(9,9,2,1,"#ffd60a");r(6,12,4,1,"#ffd60a")}
+ else if(k==="jtree"){r(6,10,4,6,"#5a3a1a");r(1,2,14,10,"#111");r(2,2,12,9,"#1f7a3a");r(3,3,5,3,"#3fae5a");r(9,7,4,3,"#14572a");r(5,10,1,4,"#2e9a3e")}
+ else if(k==="fern"){r(1,9,14,6,"#111");r(2,9,12,5,"#2f8f3a");r(3,7,2,3,"#2f8f3a");r(11,7,2,3,"#2f8f3a");r(7,6,2,4,"#57c46a")}
+ else if(k==="mossrock"){r(2,8,12,7,"#111");r(3,7,10,7,"#8a8f86");r(3,7,10,2,"#4c9a3c");r(9,12,3,2,"#5f645c")}
+ else if(k==="tree"){r(6,11,4,5,"#5a3a1a");r(2,3,12,9,"#111");r(3,2,10,9,"#2d8a3e");r(4,3,5,3,"#4cbb5a");r(1,6,14,4,"#2d8a3e");r(9,7,3,2,"#1f6a2c")}
  else if(k==="bush"){r(1,8,14,7,"#111");r(2,7,12,7,"#3aa14a");r(4,8,4,2,"#6ad36f");r(10,10,3,2,"#2a7f37")}
  else{r(2,9,12,6,"#111");r(3,8,10,6,"#9a9a9a");r(5,9,4,2,"#c8c8c8");r(9,12,3,2,"#6e6e6e")}})}
-function buildDecor(){var d=$("decor");if(!d||d.dataset.done)return;d.dataset.done=1;var spots=[["tree",3,6],["bush",90,4],["rock",93,30],["tree",2,40],["bush",4,58],["rock",3,88],["tree",91,62],["bush",92,90],["rock",88,46],["bush",12,48]];
- d.innerHTML=spots.map(function(z){return'<img src="'+decoSprite(z[0])+'" style="left:'+z[1]+'%;top:'+z[2]+'%" alt="">'}).join("")+
+function buildDecor(DK){var d=$("decor");if(!d||d.dataset.done)return;d.dataset.done=1;DK=DK||["tree","bush","rock"];var TI={tree:0,bush:1,rock:2};var spots=[["tree",3,6],["bush",90,4],["rock",93,30],["tree",2,40],["bush",4,58],["rock",3,88],["tree",91,62],["bush",92,90],["rock",88,46],["bush",12,48]];
+ d.innerHTML=spots.map(function(z){return'<img src="'+decoSprite(DK[TI[z[0]]])+'" style="left:'+z[1]+'%;top:'+z[2]+'%" alt="">'}).join("")+
  '<img class="sidet" src="'+hqSprite(1,1)+'" style="left:5%;top:9%"><img class="sidet" src="'+hqSprite(1,1)+'" style="right:5%;top:9%"><img class="sidet" src="'+hqSprite(0,1)+'" style="left:5%;bottom:9%"><img class="sidet" src="'+hqSprite(0,1)+'" style="right:5%;bottom:9%">'}
-function fighterEl(c,mine,rdy){var d=document.createElement("div");d.className="ftr"+(c.cls?" "+c.cls:"")+(mine?" mine":" enemy")+(rdy?" ready":"")+(isTaunt(c)?" taunt":"")+(c.shield?" shield":"")+(c.stun?" stunned":"");d.dataset.id=c.id;
+function fighterEl(c,mine,rdy){var d=document.createElement("div");d.className="ftr a-"+archOf(c)+(c.cls?" "+c.cls:"")+(mine?" mine":" enemy")+(rdy?" ready":"")+(isTaunt(c)?" taunt":"")+(c.shield?" shield":"")+(c.stun?" stunned":"");d.dataset.id=c.id;
  var st=(c.cls?CLS[c.cls].i:"")+(c.wait>0?"⏳"+c.wait:"")+(isTaunt(c)?"🧱":"")+(c.shield?"🛡":"")+(c.stun?"💫":"")+(mine&&c.sick&&c.a!=="swift"?"💤":"")+(c.a==="double"?"⚔":"");
  var walking=(c.sick&&c.a!=="swift")||c.wait>0||(c.stun&&WAITED[c.id]);var arriving=false;
  if(walking){d.classList.add("walking","back");WAITED[c.id]=1}else if(WAITED[c.id]){delete WAITED[c.id];arriving=true;d.classList.add("arrive")}
@@ -593,7 +662,7 @@ function fighterEl(c,mine,rdy){var d=document.createElement("div");d.className="
 function tapOrHold(el,tap,hold){var t=null,held=false;el.addEventListener("pointerdown",function(){held=false;t=setTimeout(function(){held=true;hold()},480)});
  ["pointerup","pointerleave","pointercancel"].forEach(function(ev){el.addEventListener(ev,function(){clearTimeout(t)})});
  el.addEventListener("contextmenu",function(e){e.preventDefault()});el.addEventListener("click",function(e){if(held){held=false;return}if(e.target.classList.contains("finfo"))return;tap()})}
-function openInfo(c,mine){var ab=ABIL[c.a];$("finfoBody").innerHTML='<div class="fiphoto">'+getPortrait(c)+'</div><h3>'+c.n+'</h3><div class="fistats"><span class="fichip" style="background:#1d6fd8">⚡ '+c.cost+' cost</span><span class="fichip" style="background:#e63946">⚔ '+c.p+' power</span><span class="fichip" style="background:#2a9d8f">❤ '+c.h+'/'+c.maxH+'</span></div><p><b>'+ab.i+' '+ab.t+'</b></p>'+(c.cls?'<p class="clsline">'+CLS[c.cls].i+' '+CLS[c.cls].t+(c.wait>0?' · ⏳ ready in '+c.wait+' turn'+(c.wait>1?'s':''):'')+'</p>':'')+'<p class="fistat">'+[
+function openInfo(c,mine){var ab=ABIL[c.a];$("finfoBody").innerHTML='<div class="fiphoto">'+getPortrait(c)+'</div><h3>'+c.n+'</h3><div class="fistats"><span class="fichip" style="background:#1d6fd8">⚡ '+c.cost+' cost</span><span class="fichip" style="background:#e63946">⚔ '+c.p+' power</span><span class="fichip" style="background:#2a9d8f">❤ '+c.h+'/'+c.maxH+'</span></div>'+(c.a==='none'?'':'<p><b>'+ab.i+' '+ab.t+'</b></p>')+''+(c.cls?'<p class="clsline">'+CLS[c.cls].i+' '+CLS[c.cls].t+(c.wait>0?' · ⏳ ready in '+c.wait+' turn'+(c.wait>1?'s':''):'')+'</p>':'')+'<p class="fistat">'+[
   isTaunt(c)?"🧱 Taunting":(c.a==="taunt"?"🧱 Taunt lost (damaged)":""),c.shield?"🛡 Shield up":"",c.stun?"💫 Stunned":"",mine&&canAttack(c)?"✅ Ready to attack":(mine?"💤 Can't attack yet":""),mine?"Your hero":"Enemy hero"].filter(Boolean).join(" · ")+'</p>';$("finfo").classList.add("show")}
 function pow(id,t){var n=nodeFor(id);if(!n)return;var r=n.getBoundingClientRect();var p=document.createElement("div");p.className="pow";p.textContent=t;p.style.left=(r.left+r.width/2-30)+"px";p.style.top=(r.top+20)+"px";document.body.appendChild(p);n.classList.add("shake");setTimeout(function(){p.remove()},1400)}
 function flushFx(){var fx=G.fx;G.fx=[];var words=["POW!","BAM!","ZAP!","KRAK!","WHAM!"];fx.forEach(function(f){pow(f.id,f.t.charAt(0)==="-"?words[Math.floor(Math.random()*5)]+" "+f.t:f.t)})}
@@ -644,8 +713,11 @@ function spriteURL(h,fr){var k=h.n+"|"+fr;if(SPR[k])return SPR[k];var L=LOOK[h.n
  r(X(19),Y(22),10,2,ac);
  // ---- arms
  function armDown(x,y){sb(x,y,5,9,su);r(x,y,5,2,lt(su));sb(x,y+9,5,8,su);sb(x-1,y+13,7,5,ac);r(x,y+17,5,2,sk)}
- armDown(X(9),Y(24));
- if(fr==="punch"){sb(33,25,10,5,su);sb(41,24,7,7,ac);r(41,24,7,1,lt(ac))}
+ if(fr==="slam"){sb(X(9),Y(8),5,16,su);sb(X(8),Y(4),7,5,ac);sb(X(34),Y(8),5,16,su);sb(X(33),Y(4),7,5,ac)}
+ else if(fr==="cast"){sb(X(6),Y(14),5,11,su);sb(X(5),Y(10),7,5,ac);sb(33,25,10,5,su);sb(41,23,7,8,ac);r(46,22,2,2,"#fff")}
+ else armDown(X(9),Y(24));
+ if(fr==="slam"||fr==="cast"){}
+ else if(fr==="punch"){sb(33,25,10,5,su);sb(41,24,7,7,ac);r(41,24,7,1,lt(ac))}
  else if(fr==="hit"){sb(X(34),Y(13),5,12,su);sb(X(33),Y(9),7,5,ac)}
  else armDown(X(34),Y(24));
  // shoulders
@@ -697,7 +769,21 @@ function playFight(I,done){if(SPEED>=99)return done();var q=[];function at(ms,f)
   if(n===(ab==="double"?2:1)){if(ab==="stun"&&I.stun){tEl.classList.add("stunned");burst(tEl,"💫❄️","big")}if(ab==="drain")burst(aEl,"🩸💚","big");if(ab==="heal")burst(aEl,"✨💚✨","big");if(ab==="rally")burst(aEl,"📣","big")}}
  var rng=I.A.cls==="ranged";
  function shoot(){var pr=document.createElement("div");pr.className="proj";pr.style.left=(ar.left+ar.width/2)+"px";pr.style.top=(ar.top+ar.height*.4)+"px";pr.style.transition="transform "+T_(270)+"ms linear";document.body.appendChild(pr);void pr.offsetWidth;pr.style.transform="translate("+dx+"px,"+(dy+ar.height*.1)+"px)";setTimeout(function(){pr.remove()},T_(290)+40)}
- at(40,function(){if(rng){aEl.style.transform="translate("+dx*.06+"px,"+dy*.06+"px)";frame(aEl,I.A,"punch");shoot()}else{aEl.style.transform="translate("+dx*.7+"px,"+dy*.7+"px) scale(1.15)";frame(aEl,I.A,ab==="double"?"kick":"punch")}});
+ var AR=archOf(I.A),TF=function(t){aEl.style.transform=t};
+ function orb(){var pr=document.createElement("div");pr.className="proj orb";pr.style.left=(ar.left+ar.width/2)+"px";pr.style.top=(ar.top+ar.height*.35)+"px";pr.style.transition="transform "+T_(280)+"ms ease-in";document.body.appendChild(pr);void pr.offsetWidth;pr.style.transform="translate("+dx+"px,"+(dy+ar.height*.15)+"px) scale(1.6)";setTimeout(function(){pr.remove()},T_(300)+40)}
+ function shake(){var f=$("field");if(!f)return;f.classList.remove("gshake");void f.offsetWidth;f.classList.add("gshake");setTimeout(function(){f.classList.remove("gshake")},T_(450)+50)}
+ function ring(){var r=aEl.getBoundingClientRect(),d=document.createElement("div");d.className="pring";d.style.left=(r.left+r.width/2)+"px";d.style.top=(r.top+r.height/2)+"px";d.style.animationDuration=T_(500)+"ms";document.body.appendChild(d);setTimeout(function(){d.remove()},T_(520)+40)}
+ at(40,function(){
+  if(AR==="ranged"){TF("translate("+(-dx*.05)+"px,"+(-dy*.05)+"px) rotate("+(dx>0?-4:4)+"deg)");frame(aEl,I.A,"punch");shoot()}
+  else if(AR==="mystic"){TF("translateY(-10px) scale(1.08)");frame(aEl,I.A,"cast");burst(aEl,"✨","");orb()}
+  else if(AR==="giant"){TF("translate("+dx*.35+"px,"+(dy*.35-28)+"px) scale(1.1)");frame(aEl,I.A,"slam")}
+  else if(AR==="speed"){aEl.classList.add("blur");TF("translate("+dx*.75+"px,"+dy*.75+"px) scale(1.1)");frame(aEl,I.A,"punch");at(130,function(){frame(aEl,I.A,"kick")});at(220,function(){frame(aEl,I.A,"punch")})}
+  else if(AR==="blade"){TF("translate("+dx*.7+"px,"+dy*.7+"px) rotate(360deg) scale(1.1)");frame(aEl,I.A,"kick")}
+  else if(AR==="support"){ring();TF("translate("+dx*.45+"px,"+dy*.45+"px) scale(1.08)");frame(aEl,I.A,"cast")}
+  else{TF("translate("+dx*.72+"px,"+dy*.72+"px) rotate("+(dx>0?10:-10)+"deg) scale(1.2)");frame(aEl,I.A,"punch")}});
+ if(AR==="giant")at(250,function(){TF("translate("+dx*.6+"px,"+dy*.6+"px) scale(1.15)");shake()});
+ if(AR==="blade")at(300,function(){burst(tEl,"⚔️","big")});
+ at(360,function(){aEl.classList.remove("blur")});
  at(330,function(){hit(1)});if(ab==="double"){if(rng)at(400,function(){frame(aEl,I.A,"punch");shoot()});at(650,function(){frame(aEl,I.A,"punch");hit(2)})}
  var e=ab==="double"?950:700;
  at(e,function(){aEl.style.transform="";frame(aEl,I.A,I.aKO?"ko":"idle");if(I.T&&!I.tKO)frame(tEl,I.T,"idle");if(I.tKO){tEl.classList.add("kofade");if(I.T)frame(tEl,I.T,"ko");burst(tEl,"K.O.!","ko")}if(I.aKO)aEl.classList.add("kofade")});
@@ -705,11 +791,11 @@ function playFight(I,done){if(SPEED>=99)return done();var q=[];function at(ms,f)
 function timeUpText(){if(G&&G.timeUp)$("endText").textContent="⏱ Time's up after round "+CFG.maxRound+"! "+(G.winner===0?"You win on HQ HP ("+G.hp[0]+" vs "+G.hp[1]+")!":G.winner===1?(NET.on||NET.was?NET.oppName:"The villains")+" win on HQ HP ("+G.hp[1]+" vs "+G.hp[0]+").":"Equal HQ HP: it's a draw!")}
 function showEnd(){if(!G.over||$("end").classList.contains("show"))return;var w=G.winner===0;$("endTitle").textContent=w?"VICTORY!":G.winner===1?"DEFEAT!":"DRAW!";
  $("againBtn").style.display=NET.on||NET.was?"none":"";if(NET.on||NET.was){$("endText").textContent=NET.endMsg||(w?"You defeated "+NET.oppName+"! 🏆":G.winner===1?NET.oppName+" wins this time. 🦹":"Both HQs fall at once!");timeUpText(),$("end").classList.add("show");setTimeout(function(){if(G&&G.over)netClose(true)},5000);return}
- $("endText").textContent=w?"The villains' HQ crumbles! The city is saved! 🦸":G.winner===1?"Your HQ has fallen... the villains win this round. 🦹":"Both HQs fall at once!";timeUpText(),$("end").classList.add("show")}
+ $("endText").textContent=w?"The villains' HQ crumbles! The city is saved! 🦸":G.winner===1?"Your HQ has fallen... the villains win this round. 🦹":"Both HQs fall at once!";timeUpText();var pt=progResult();if(pt){$("endText").innerHTML=esc($("endText").textContent)+'<div class="lvlup'+(w?'':' lose')+'">'+esc(pt)+'</div>'}$("againBtn").textContent=PROG_ON?(w?"▶ Next Level":"↻ Retry Level"):"Rematch";$("end").classList.add("show")}
 function aiStep(){busy=true;render();var s=1,o=0;
  // animate the AI: play cards one by one, then attacks one by one, reusing AI choices
  var actions=0;function next(){if(!$("home").classList.contains("hide")){busy=false;return}if(G.over){busy=false;render();return}
-  var x=actions++<40?aiChoose(G,s,DIFF):null;
+  var x=actions++<40?aiChoose(G,s,(G.mods&&G.mods.d)||DIFF):null;
   if(x&&x.t==="play"){var id=x.id;if(!play(G,s,id)){busy=false;endTurn(G);render();return}render();flushFx();var n=nodeFor(id);if(n)n.classList.add("enter");return setTimeout(next,T_(650))}
   if(x&&x.t==="atk"){var a=G.board[s].find(function(c){return c.id===x.a});return doAttack(s,x.a,x.tid,function(ok){if(!ok&&a)a.attacks=0;setTimeout(next,T_(250))})}
   busy=false;endTurn(G);render()}
@@ -752,7 +838,7 @@ function slotAct(a,i){if(a==="new"){slotUI={mode:"new",idx:-1}}
  renderSlots()} // migrate old 30-card saves
 function deckList(){return custom.length===CFG.deck?custom.slice():randomDeck()}
 function summary(list){var m={};list.forEach(function(i){m[i]=(m[i]||0)+1});return Object.keys(m).sort(function(a,b){return HEROES[a].cost-HEROES[b].cost}).map(function(i){return "<span class='mini'>"+getPortrait(HEROES[i])+"</span>"+HEROES[i].n+(m[i]>1?" ×"+m[i]:"")}).map(function(x){return"<div>"+x+"</div>"}).join("")}
-function renderHome(){renderSlots();if($("diffSel"))$("diffSel").value=DIFF;$("decks").style.display="none";$("builder").classList.add("show");renderBuilder();var ok=custom.length===CFG.deck;$("battleBtn").disabled=!ok;$("vsInfo").textContent=ok?"Ready! The villains will bring a random 5-hero squad.":"Pick "+(CFG.deck-custom.length)+" more hero"+(5-custom.length===1?"":"es")+" ("+custom.length+"/"+CFG.deck+").";return;var box=$("decks");box.innerHTML="";DECKS.concat([{id:"custom",n:"Custom Deck",e:"🛠",c:"#06d6a0",sig:[],d:"Build your own 30-card squad. Max 2 copies of each hero."}]).forEach(function(d){
+function renderHome(){renderSlots();if($("diffSel"))$("diffSel").value=DIFF;$("decks").style.display="none";$("builder").classList.add("show");renderBuilder();var ok=custom.length===CFG.deck;$("battleBtn").disabled=!ok;if($("progBtn"))$("progBtn").disabled=!ok;renderProg();$("vsInfo").textContent=ok?"Ready! The villains will bring a random 8-hero squad.":"Pick "+(CFG.deck-custom.length)+" more hero"+(CFG.deck-custom.length===1?"":"es")+" ("+custom.length+"/"+CFG.deck+").";return;var box=$("decks");box.innerHTML="";DECKS.concat([{id:"custom",n:"Custom Deck",e:"🛠",c:"#06d6a0",sig:[],d:"Build your own 30-card squad. Max 2 copies of each hero."}]).forEach(function(d){
  var el=document.createElement("div");el.className="dk"+(pick===d.id?" sel":"");el.style.setProperty("--c",d.c);
  var sig=d.id==="custom"?(custom.length?custom.slice(0,3):[]).map(function(i){return getPortrait(HEROES[i])}):d.sig.map(function(i){return getPortrait(HEROES[i])});
  el.innerHTML="<h3>"+d.e+" "+d.n+"</h3><div class='sigs'>"+(sig.length?sig.map(function(x){return"<span>"+x+"</span>"}).join(""):"<span>❓</span><span>❓</span><span>❓</span>")+"</div><p>"+d.d+"</p><div class='clist'>"+(d.id==="custom"?(custom.length?summary(custom):"<i>Empty: click to build</i>")+"<div><b>"+custom.length+"/30</b></div>":summary(d.list))+"</div>";
@@ -768,7 +854,17 @@ function renderBuilder(){var sq=$("squad");sq.innerHTML="";for(var k=0;k<CFG.dec
  $("bcount").textContent=custom.length+" / "+CFG.deck;$("bcount").style.color=custom.length===CFG.deck?"#2a9d8f":"#e63946"}
 function saveC(){try{localStorage.setItem("sc_custom",JSON.stringify(custom))}catch(e){}renderHome()}
 function showHome(){document.body.classList.remove("inbattle");if(NET.on)netClose();NET.was=false;$("restartBtn").style.display="";$("end").classList.remove("show");$("home").classList.remove("hide");renderHome()}
-function battle(){if(custom.length!==CFG.deck&&!location.hash)return;aiDeck={n:"random",list:aiDeckFor(DIFF)};$("home").classList.add("hide");start()}
+var PROG={lvl:1,streak:0,best:1,drop:false},PROG_ON=false;try{Object.assign(PROG,JSON.parse(localStorage.getItem("sc_prog")||"{}"))}catch(e){}
+function saveProg(){try{localStorage.setItem("sc_prog",JSON.stringify(PROG))}catch(e){}}
+function oppTxt(o){return "Lv "+o.lvl+" · "+o.name+" · AI "+o.d.toUpperCase()+(o.hp?" · "+(o.hp>0?"+":"")+o.hp+" HQ HP":"")+(o.e?" · +"+o.e+"⚡":"")+(o.pw?" · heroes +"+o.pw+" Power":"")+(o.hb?" · +"+o.hb+" Health":"")}
+function renderProg(){var o=progOpp(PROG.lvl);$("progBox").innerHTML='<b>🏆 PROGRESSION</b> · Level <b>'+PROG.lvl+'</b> · 🔥 Streak '+PROG.streak+' · ⭐ Best '+PROG.best+'<div class="pnext">Next: '+oppTxt(o)+'</div><label><input type="checkbox" id="progDrop"'+(PROG.drop?' checked':'')+'> Drop a level on loss</label> <button id="progReset">↺ Reset</button>';
+ $("progDrop").onchange=function(){PROG.drop=this.checked;saveProg()};$("progReset").onclick=function(){if(confirm("Reset progression to Level 1?")){PROG.lvl=1;PROG.streak=0;PROG.best=1;saveProg();renderProg()}}}
+function progBattle(){if(custom.length!==CFG.deck)return;PROG_ON=true;var o=progOpp(PROG.lvl);aiDeck={n:"prog",list:o.sq==="random"?randomDeck():smartDeck()};$("home").classList.add("hide");start();log(G,"🏆 Level "+o.lvl+": "+o.name+(o.boss?" (BOSS!)":"")+".");render()}
+function progResult(){if(!PROG_ON||!G||!G.over||G.progDone)return "";G.progDone=1;var w=G.winner===0,t="";
+ if(w){PROG.lvl++;PROG.streak++;PROG.best=Math.max(PROG.best,PROG.lvl);t="⬆️ LEVEL UP! You reached Level "+PROG.lvl+". 🔥 Streak "+PROG.streak+". Next: "+oppTxt(progOpp(PROG.lvl))}
+ else{PROG.streak=0;if(PROG.drop&&PROG.lvl>1&&G.winner===1)PROG.lvl--;t=(G.winner===1?"Stay strong! ":"")+"Level "+PROG.lvl+". Try again: "+oppTxt(progOpp(PROG.lvl))}
+ saveProg();return t}
+function battle(){PROG_ON=false;if(custom.length!==CFG.deck&&!location.hash)return;aiDeck={n:"random",list:aiDeckFor(DIFF)};$("home").classList.add("hide");start()}
 
 // ================= ONLINE (PeerJS WebRTC, host-authoritative) =================
 var NET={on:false,was:false,host:false,peer:null,conn:null,code:"",oppName:"",myName:"",q:[],pbusy:false,endMsg:"",avail:null};
@@ -803,7 +899,7 @@ function wire(c){NET.conn=c;c.on("data",function(d){try{d=typeof d==="string"?JS
  c.on("close",netLost);c.on("error",netLost)}
 function netLost(){if(NET.pbusy||NET.q.length){NET.lostPending=true;return}if(!NET.on){if(NET.conn)netStatus("Connection closed.");return}if(G&&!G.over){$("end").classList.remove("show");NET.endMsg=NET.oppName+" disconnected. You win by forfeit! 🏆";G.over=true;G.winner=0;busy=false;$("arena").classList.remove("show")}badge("🔴 Disconnected",false);render()}
 function pump(){if(!NET.pbusy&&!NET.q.length&&NET.lostPending){NET.lostPending=false;return netLost()}if(NET.pbusy||!NET.q.length)return;NET.pbusy=true;var d=NET.q.shift();handle(d,function(){NET.pbusy=false;pump()})}
-function beginOnline(){NET.lostPending=false;$("endText").textContent="";$("endTitle").textContent="";NET.on=true;NET.was=true;NET.endMsg="";$("online").classList.remove("show");$("home").classList.add("hide");$("end").classList.remove("show");sel=null;busy=false;
+function beginOnline(){setTimeout(function(){var M=window.G&&MAPS[G.map];if(M)bigBanner(M.e+" "+M.n.toUpperCase(),"Arena")},400);NET.lostPending=false;$("endText").textContent="";$("endTitle").textContent="";NET.on=true;NET.was=true;NET.endMsg="";$("online").classList.remove("show");$("home").classList.add("hide");$("end").classList.remove("show");sel=null;busy=false;
  badge("🟢 Online vs "+NET.oppName,true);$("restartBtn").style.display="none"}
 function handle(d,done){if(d.t==="full"){netStatus("That match is already full.");return done()}
  if(d.t==="forfeit"){if(G&&!G.over){NET.endMsg=NET.oppName+" forfeited. You win! 🏆";G.over=true;G.winner=0;busy=false;render()}return done()}
@@ -829,11 +925,11 @@ function uiPlay(id){if(!NET.on){return play(G,0,id)}
 function uiAttack(aid,tid){if(NET.on&&!NET.host){netSend({t:"act",x:{t:"atk",a:aid,tid:tid}});busy=true;sel=null;render();return}
  doAttack(0,aid,tid,NET.on?function(){netSend({t:"state",G:G})}:undefined)}
 function uiEnd(){if(NET.host){endTurn(G);render();netSend({t:"state",G:G})}else{netSend({t:"act",x:{t:"end"}});busy=true;render()}}
-function start(){G=newGame(deckList(pick),aiDeck.list);sel=null;busy=false;$("end").classList.remove("show");log(G,"A new battle begins! The villains bring "+aiDeck.list.map(function(i){return HEROES[i].n}).join(", ")+". Your turn.");render()}
+function start(){G=newGame(deckList(pick),aiDeck.list);G.bonus[1]=[];/* vs-AI: no second-player bonus energy for the computer */if(PROG_ON)applyProg(G,progOpp(PROG.lvl));sel=null;busy=false;$("end").classList.remove("show");var MP=MAPS[G.map]||MAPS[0];log(G,"🗺 Arena: "+MP.n+" "+MP.e);setTimeout(function(){bigBanner(MP.e+" "+MP.n.toUpperCase(),"Arena")},300);log(G,"A new battle begins! The villains bring "+aiDeck.list.map(function(i){return HEROES[i].n}).join(", ")+". Your turn.");render()}
 $("endBtn").onclick=function(){if(G.turn!==0||busy||G.over)return;sel=null;if(NET.on)return uiEnd();endTurn(G);aiStep()};
-$("restartBtn").onclick=function(){if(confirm("Restart? OK = rematch with same decks, Cancel = keep playing. Use 🏠 Home to change decks."))start()};$("againBtn").onclick=start;
+$("restartBtn").onclick=function(){if(confirm("Restart? OK = rematch with same decks, Cancel = keep playing. Use 🏠 Home to change decks."))start()};$("againBtn").onclick=function(){if(PROG_ON)progBattle();else start()};
 $("speedSel").value=String(SPEED);$("speedSel").onchange=function(){SPEED=+this.value;try{localStorage.setItem("sc_speed",SPEED)}catch(e){}};
-$("homeBtn").onclick=function(){if(NET.on&&!G.over){if(confirm("Forfeit this online match and leave?")){netSend({t:"forfeit"});netClose(true);showHome()}return}if(G.over||confirm("Leave this battle and return to the Home screen?"))showHome()};$("endHome").onclick=showHome;$("battleBtn").onclick=battle;$("logBtn").onclick=function(){var w=$("logWrap");w.classList.toggle("open");this.textContent=w.classList.contains("open")?"📜 Log ▴":"📜 Log ▾";$("log").scrollTop=1e6};$("xInfo").onclick=function(){$("finfo").classList.remove("show")};$("finfo").onclick=function(e){if(e.target===this)this.classList.remove("show")};$("onlineBtn").onclick=openOnline;$("xOnline").onclick=$("netCancel").onclick=function(){netClose();$("online").classList.remove("show")};
+$("homeBtn").onclick=function(){if(NET.on&&!G.over){if(confirm("Forfeit this online match and leave?")){netSend({t:"forfeit"});netClose(true);showHome()}return}if(G.over||confirm("Leave this battle and return to the Home screen?"))showHome()};$("endHome").onclick=showHome;$("battleBtn").onclick=battle;$("progBtn").onclick=progBattle;$("logBtn").onclick=function(){var w=$("logWrap");w.classList.toggle("open");this.textContent=w.classList.contains("open")?"📜 Log ▴":"📜 Log ▾";$("log").scrollTop=1e6};$("xInfo").onclick=function(){$("finfo").classList.remove("show")};$("finfo").onclick=function(e){if(e.target===this)this.classList.remove("show")};$("onlineBtn").onclick=openOnline;$("xOnline").onclick=$("netCancel").onclick=function(){netClose();$("online").classList.remove("show")};
 $("netHostBtn").onclick=function(){netHost()};$("netJoinBtn").onclick=function(){netJoin()};$("netCode").onkeydown=function(e){if(e.key==="Enter")netJoin()};$("diffSel").onchange=function(){DIFF=this.value;try{localStorage.setItem("sc_diff",DIFF)}catch(e){}};$("homeHelp").onclick=function(){$("help").classList.add("show")};
 $("bClear").onclick=function(){custom=[];saveC()};$("homeBar").style.flexWrap="wrap";$("bFill").onclick=function(){var pool=[];HEROES.forEach(function(h,i){var n=custom.filter(function(x){return x===i}).length;for(var k=n;k<2;k++)pool.push(i)});pool.sort(function(){return Math.random()-.5});pool=pool.filter(function(x,i,a){return a.indexOf(x)===i});while(custom.length<CFG.deck&&pool.length)custom.push(pool.pop());saveC()};$("helpBtn").onclick=function(){$("help").classList.add("show")};$("closeHelp").onclick=$("xHelp").onclick=function(){$("help").classList.remove("show")};$("help").onclick=function(e){if(e.target===this)this.classList.remove("show")};
 if(location.hash==="#custom")pick="custom";if(location.hash==="#slotsdemo"){SLOTS=[{name:"Speed Demons",list:[0,3,1,7,17]},{name:"Tank Wall",list:[4,10,16,2,12]},{name:"Storm Crew",list:[5,11,13,6,14]}];ACTIVE=1;custom=SLOTS[1].list.slice();slotUI={mode:"new",idx:-1};}showHome();if(location.hash==="#arena"||location.hash==="#einfo"||location.hash==="#walkup"){custom=location.hash==="#walkup"?[2,4,5,9,12]:[0,3,5,9,12];battle();var guard=0;while(guard++<12&&!(G.turn===0&&G.board[0].some(canAttack)&&G.board[1].length>=2&&G.board[0].length>=2)){aiTurn(G,G.turn,"easy");if(G.over){G=newGame(custom,randomDeck());}}$("help").classList.remove("show");var rd=G.board[0].filter(canAttack)[0];if(rd&&location.hash==="#arena")sel=rd.id;render();if(location.hash==="#einfo"&&G.board[1][0])openInfo(G.board[1][0],false)}if(location.hash==="#walkup"){render();setTimeout(function(){var h=G.hand[0].filter(function(c){return c.cost<=G.e[0]})[0];if(G.board[0].length>=CFG.board){G.board[0].pop()}if(h){uiPlay(h.id);render()}},200)}
