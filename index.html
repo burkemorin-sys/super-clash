@@ -297,9 +297,13 @@ img.hero-svg{image-rendering:pixelated}
 .gshake{animation:gshake .4s linear}
 @keyframes gshake{20%{transform:translate(-4px,2px)}40%{transform:translate(4px,-2px)}60%{transform:translate(-3px,1px)}80%{transform:translate(2px,0)}}
 @media (prefers-reduced-motion:reduce){.ftr .pix{animation:none!important}}
+#auBtn{position:fixed;top:calc(6px + env(safe-area-inset-top));right:6px;z-index:80;font-size:18px;padding:4px 8px;border-radius:50%}
+#auPanel{display:none;position:fixed;top:calc(48px + env(safe-area-inset-top));right:6px;z-index:80;background:#fff;border:3px solid #111;border-radius:10px;padding:8px 10px;box-shadow:4px 4px 0 #111;flex-direction:column;gap:4px;font-size:14px;width:190px}
+#auPanel.show{display:flex}#auPanel input[type=range]{width:100%}
 </style></head><body>
 <h1>⚡ SUPER CLASH ⚡</h1>
 <div id="top"><button id="helpBtn">How to Play</button><button id="restartBtn">Restart</button><button id="homeBtn">🏠 Home</button><label class="spd">🎬 Fights: <select id="speedSel"><option value="1">Normal</option><option value="2">Fast</option><option value="99">Skip</option></select></label></div>
+<button id="auBtn" aria-label="Sound settings">🔊</button><div id="auPanel"><b>🔊 Sound</b><label><input type="checkbox" id="auMusic"> 🎵 Music</label><input type="range" id="auMv" min="0" max="1" step="0.05"><label><input type="checkbox" id="auSfx"> 💥 Sound effects</label><input type="range" id="auSv" min="0" max="1" step="0.05"></div>
 <div id="game">
  <div id="field"><div id="decor"></div>
   <div class="hqrow"><div class="base enemyhq" id="aiBase"><img class="hqpix" id="aiHq" alt=""><div class="hqtxt"><b>VILLAIN HQ</b><div class="hpbar"><i id="aiBar"></i></div><span class="hp" id="aiHp"></span><span id="aiInfo"></span></div></div></div>
@@ -334,7 +338,7 @@ img.hero-svg{image-rendering:pixelated}
 <li>You hold up to <b>2 cards</b>; the <b>NEXT</b> card is shown on the right. When you play a hero, the next card in your cycle fills its slot. A hero on the board stays <b>out</b> of the cycle until it is knocked out, then it goes to the back of the cycle. With 4+ heroes on the board your hand may run short (empty slots), so trade wisely!</li>
 <li>⚡ <b>Escalating energy:</b> each turn your max Energy grows and refills. Rounds 1–5: +1 per turn · rounds 6–10: +2 · round 11+: +3 (no cap). A <b>POWER SURGE!</b> banner shows when your rate goes up. Max 4 heroes on the board.</li><li>You go first; the villains get +2 bonus ⚡ on their 1st and 4th turns to even it out.</li><li>⏰ <b>Overtime &amp; time limit:</b> from round 10, each HQ takes storm damage at the start of its turn: 2, then 4, 6, 8… The match ends after <b>round 20</b>: the HQ with more HP wins (equal HP = draw). Watch the <b>Round X/20</b> counter.</li>
 <li>Heroes can attack the turn <i>after</i> they're played (unless <b>Swift</b>). The whole battle happens in the arena: <b>tap a hand card</b> to deploy that hero, <b>tap your glowing hero</b> to select it, then tap a glowing enemy or the enemy HQ to attack. Tap an enemy (or the ⓘ / long-press on your own heroes) to see who they are. Only your own hand is visible.</li>
-<li>🌐 <b>Online 1v1:</b> tap <b>Play Online</b>, enter your name, then <b>Host</b> to get a 5-letter code (share it) or type a friend's code and <b>Join</b>. Each player uses their own active squad; the host goes first. Leaving the match counts as a forfeit. Some strict networks (work/school Wi-Fi, some mobile carriers) may block the direct connection.</li><li>🗿 <b>Giants</b> are big and tough but cost more. They wait <b>2 of your turns</b> (⏳2 → ⏳1) before attacking, and can <b>only attack the enemy HQ</b> (they ignore Taunt). Enemies can still attack them.</li><li>🏹 <b>Ranged</b> heroes fire projectiles: a hero they shoot <b>can&#39;t hit back</b>. They&#39;re a bit frailer to make up for it.</li><li>🏆 <b>Progression</b>: climb levels by winning. Each win levels you up; a loss keeps your level (or drops one if you tick that option). Opponents get tougher: Easy → Normal → Hard AI, then smarter squads, extra HQ HP, extra energy and buffed heroes. Every 5th level is a 👑 <b>boss</b>. Your level, streak and best are saved.</li><li>Hero vs hero: both deal their Power to each other. Attacking the HQ takes no damage back.</li>
+<li>🌐 <b>Online 1v1:</b> tap <b>Play Online</b>, enter your name, then <b>Host</b> to get a 5-letter code (share it) or type a friend's code and <b>Join</b>. Each player uses their own active squad; the host goes first. Leaving the match counts as a forfeit. Some strict networks (work/school Wi-Fi, some mobile carriers) may block the direct connection.</li><li>🗿 <b>Giants</b> are big and tough but cost more. They wait <b>2 of your turns</b> (⏳2 → ⏳1) before attacking, and can <b>only attack the enemy HQ</b> (they ignore Taunt). Enemies can still attack them.</li><li>🏹 <b>Ranged</b> heroes fire projectiles: a hero they shoot <b>can&#39;t hit back</b>. They&#39;re a bit frailer to make up for it.</li><li>🏆 <b>Progression</b>: climb levels by winning. Each win levels you up; a loss keeps your level (or drops one if you tick that option). Opponents get tougher: Easy → Normal → Hard AI, then smarter squads, extra HQ HP, extra energy and buffed heroes. Every 5th level is a 👑 <b>boss</b>. Your level, streak and best are saved.</li><li>🔊 Tap the speaker button (top-right) to switch music and sound effects on/off or change their volume.</li><li>Hero vs hero: both deal their Power to each other. Attacking the HQ takes no damage back.</li>
 <li>If the enemy has a <b>Taunt</b> 🛡️‍ hero, you must attack it first.</li>
 <li>Abilities: 🛡 Shield blocks the first hit · 💚 Heal restores HQ HP on play · ⚔️ Double Strike attacks twice · 💫 Stun freezes the target for its next turn · 🏃 Swift attacks right away · 🧱 Taunt (only while the hero is undamaged) · 🩸 Drain heals your HQ by damage dealt · 💥 Blast zaps an enemy on play · 📣 Rally gives allies +1 Power on play.</li>
 </ul></div><div class="helpFoot"><button id="closeHelp">Got it, let's play!</button></div></div></div>
@@ -348,7 +352,7 @@ drain:{i:"🩸",t:"Drain: heals your HQ by half the damage dealt (rounded up)"},
 rally:{i:"📣",t:"Rally: other allies gain +1 Power on play"}};
 var HEROES=[
 {n:"Captain Comet",e:"☄️",c:"#ff9f1c",cost:1,p:1,h:2,a:"swift"},
-{n:"Pixel Kid",e:"👾",c:"#9b5de5",cost:1,p:2,h:1,a:"blast"},
+{n:"Pixel Kid",e:"👾",c:"#9b5de5",cost:2,p:1,h:2,a:"blast"},
 {n:"Nurse Nova",e:"🩺",c:"#f15bb5",cost:2,p:1,h:3,a:"heal"},
 {n:"Bolt Runner",e:"⚡",c:"#fee440",cost:2,p:2,h:2,a:"swift"},
 {n:"Iron Turtle",e:"🐢",c:"#2a9d8f",cost:3,p:1,h:4,a:"taunt"},
@@ -365,7 +369,7 @@ var HEROES=[
 {n:"Shadow Lynx",e:"🐈‍⬛",c:"#343a40",cost:5,p:3,h:4,a:"double"},
 {n:"Titan Tide",e:"🌊",c:"#0077b6",cost:5,p:4,h:7,a:"taunt"},
 {n:"Quantum Quill",e:"🪶",c:"#4cc9f0",cost:6,p:5,h:5,a:"swift"},
-{n:"Solar Sentinel",e:"☀️",c:"#ffb703",cost:7,p:6,h:7,a:"rally"},
+{n:"Solar Sentinel",e:"☀️",c:"#ffb703",cost:5,p:5,h:6,a:"rally"},
 {n:"Omega Oracle",e:"🔮",c:"#b5179e",cost:8,p:7,h:8,a:"drain"},
 {n:"Bastion Behemoth",e:"🏰",c:"#495057",cost:3,p:4,h:13,a:"none",cls:"giant"},
 {n:"Lavaback",e:"🌋",c:"#9d0208",cost:3,p:5,h:9,a:"none",cls:"giant"},
@@ -465,7 +469,7 @@ var DECKS=[
 {id:"bal",n:"Justice Alliance",e:"⭐",c:"#e63946",sig:[8,14,18],d:"Balanced. A bit of everything: the classic starter deck.",
  list:L(["Captain Comet","Pixel Kid","Nurse Nova","Bolt Runner","Iron Turtle","Frost Fang","Lady Lumen","Twin Blade","Megaphone Max","Vampira Velvet","Granite Guard","Storm Siren","Dr. Mendwell","Gravity Girl","Blaze Phoenix","Shadow Lynx","Titan Tide","Quantum Quill","Solar Sentinel","Omega Oracle","Captain Comet","Pixel Kid","Nurse Nova","Bolt Runner","Iron Turtle","Frost Fang","Lady Lumen","Twin Blade","Megaphone Max","Vampira Velvet"])}];
 function energyGain(r){var g=1;for(var i=0;i<CFG.surge.length;i++)if(r>=CFG.surge[i])g=i+2;return g}
-var CFG={surge:[4,8],maxE:99,hp:8,deck:8,hand:2,board:4,overtime:6,otStep:2,maxRound:12,tauntMode:"fullhp",aiSlip:{normal:.2,hard:.1},p2bonus:[1,0,1]};
+var CFG={surge:[4,8],maxE:99,hp:15,deck:8,hand:2,board:4,overtime:6,otStep:2,maxRound:12,tauntMode:"fullhp",aiSlip:{normal:.2,hard:.1},p2bonus:[1,0,1]};
 function randomDeck(){var a=HEROES.map(function(h,i){return i});for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a.slice(0,CFG.deck)}
 // Deck is a rotating queue of hero indices: hand holds 2, the rest wait in order.
 function makeDeck(list){var d=(list&&list.length===CFG.deck?list:randomDeck()).slice();
@@ -654,7 +658,7 @@ function fighterEl(c,mine,rdy){var d=document.createElement("div");d.className="
  var walking=(c.sick&&c.a!=="swift")||c.wait>0||(c.stun&&WAITED[c.id]);var arriving=false;
  if(walking){d.classList.add("walking","back");WAITED[c.id]=1}else if(WAITED[c.id]){delete WAITED[c.id];arriving=true;d.classList.add("arrive")}
  d.style.setProperty("--by",(mine?42:-42)+"px");
- var entering=!SEEN[c.id];if(entering){SEEN[c.id]=1;d.classList.add(c.a==="swift"?"enter-run":"enter-walk");d.style.setProperty("--fy",(mine?150:-150)+"px")}
+ var entering=!SEEN[c.id];if(entering){SEEN[c.id]=1;sfx("deploy");setTimeout(function(){sfx(c.a==="heal"?"heal":"walk")},180);d.classList.add(c.a==="swift"?"enter-run":"enter-walk");d.style.setProperty("--fy",(mine?150:-150)+"px")}
  d.innerHTML='<div class="fst">'+st+'</div><div class="fimg"><img class="pix" src="'+spriteURL(c,"idle")+'" alt="">'+(walking||entering||arriving?'<div class="walk" style="background-image:url('+walkSheet(c)+')"></div>':'')+'</div><div class="fbar"><span class="fp">'+c.p+'</span><span class="fh'+(c.h<c.maxH?" hurt":"")+'">'+c.h+'</span></div><div class="fname">'+c.n+'</div><span class="finfo">i</span>';
  if(arriving)d.addEventListener("animationend",function(e){if(e.animationName==="arrive")d.classList.remove("arrive")});
  if(d.classList.contains("enter-run")||d.classList.contains("enter-walk")){d.addEventListener("animationend",function(e){if(e.animationName==="walkin"||e.animationName==="runin"){d.classList.remove("enter-run","enter-walk")}})}
@@ -679,8 +683,8 @@ function T_(ms){return SPEED>=99?0:ms/SPEED}
 var HQ_SVG='<svg viewBox="0 0 100 200" class="fighter-svg"><rect x="15" y="60" width="70" height="135" fill="#6c757d" stroke="#111" stroke-width="3"/><path d="M10 62 L50 25 L90 62Z" fill="#e63946" stroke="#111" stroke-width="3"/>'+[0,1,2,3,4].map(function(r){return'<rect x="25" y="'+(75+r*22)+'" width="14" height="12" fill="#ffd60a" stroke="#111"/><rect x="61" y="'+(75+r*22)+'" width="14" height="12" fill="#ffd60a" stroke="#111"/>'}).join('')+'<rect x="42" y="165" width="16" height="30" fill="#3d2b1f" stroke="#111" stroke-width="2"/></svg>';
 var arenaHold=false;
 function energyPop(t){var e=$("energy"),r=e.getBoundingClientRect(),d=document.createElement("div");d.className="pow epop";d.textContent=t;d.style.left=(r.left+10)+"px";d.style.top=(r.top-10)+"px";document.body.appendChild(d);setTimeout(function(){d.remove()},1500)}
-function bigBanner(a,b){var el=document.createElement("div");el.className="surge ot";el.innerHTML=a+"<small>"+b+"</small>";document.body.appendChild(el);setTimeout(function(){el.remove()},T_(1800)||900)}
-function surgeBanner(g){var b=document.createElement("div");b.className="surge";b.innerHTML="⚡ POWER SURGE! ⚡<small>+"+g+" energy every turn</small>";document.body.appendChild(b);setTimeout(function(){b.remove()},T_(1800)||900)}
+function bigBanner(a,b){if(/OVERTIME|FINAL/.test(a)){sfx("overtime");if(/OVERTIME!/.test(a))auMusic("ot")}var el=document.createElement("div");el.className="surge ot";el.innerHTML=a+"<small>"+b+"</small>";document.body.appendChild(el);setTimeout(function(){el.remove()},T_(1800)||900)}
+function surgeBanner(g){sfx("surge");var b=document.createElement("div");b.className="surge";b.innerHTML="⚡ POWER SURGE! ⚡<small>+"+g+" energy every turn</small>";document.body.appendChild(b);setTimeout(function(){b.remove()},T_(1800)||900)}
 // ---- Retro pixel sprites (32x48 grid, drawn to canvas, scaled with image-rendering:pixelated) ----
 var SPR={},SPRC={},SEEN={},WALKC={},WAITED={};
 function walkSheet(h){if(WALKC[h.n])return WALKC[h.n];spriteURL(h,"walk1");spriteURL(h,"walk2");var cv=document.createElement("canvas");cv.width=96;cv.height=72;var x=cv.getContext("2d");x.drawImage(SPRC[h.n+"|walk1"],0,0);x.drawImage(SPRC[h.n+"|walk2"],48,0);return WALKC[h.n]=cv.toDataURL()}
@@ -753,6 +757,57 @@ function spriteURL(h,fr){var k=h.n+"|"+fr;if(SPR[k])return SPR[k];var L=LOOK[h.n
  for(var j=0;j<W*H;j++)if(g[j]){x.fillStyle=g[j];x.fillRect(j%W,j/W|0,1,1)}
  SPRC[k]=cv;return SPR[k]=cv.toDataURL()}
 function spriteImg(h){return '<img class="pix" src="'+spriteURL(h,"idle")+'" alt="">'}
+// ================= AUDIO (Web Audio API, generated; no files) =================
+var AU={ctx:null,mg:null,sg:null,music:true,sfx:true,mv:.35,sv:.6,track:null,timer:null,step:0,next:0,last:{}};
+try{var _a=JSON.parse(localStorage.getItem("sc_audio")||"{}");["music","sfx","mv","sv"].forEach(function(k){if(_a[k]!==undefined)AU[k]=_a[k]})}catch(e){}
+function auSave(){try{localStorage.setItem("sc_audio",JSON.stringify({music:AU.music,sfx:AU.sfx,mv:AU.mv,sv:AU.sv}))}catch(e){}}
+function auInit(){if(AU.ctx)return AU.ctx.state==="suspended"&&AU.ctx.resume();var C=window.AudioContext||window.webkitAudioContext;if(!C)return;
+ AU.ctx=new C();var m=AU.ctx.createGain();m.gain.value=.9;m.connect(AU.ctx.destination);AU.mg=AU.ctx.createGain();AU.sg=AU.ctx.createGain();AU.mg.connect(m);AU.sg.connect(m);auVol();
+ var b=AU.ctx.createBuffer(1,AU.ctx.sampleRate*.5,AU.ctx.sampleRate),d=b.getChannelData(0);for(var i=0;i<d.length;i++)d[i]=Math.random()*2-1;AU.noise=b;
+ if(AU.want)auMusic(AU.want,true)}
+function auVol(){if(!AU.ctx)return;AU.mg.gain.value=AU.music?AU.mv*.5:0;AU.sg.gain.value=AU.sfx?AU.sv:0}
+["pointerdown","touchend","keydown"].forEach(function(ev){window.addEventListener(ev,auInit,{passive:true})});
+document.addEventListener("visibilitychange",function(){if(!AU.ctx)return;if(document.hidden)AU.ctx.suspend();else AU.ctx.resume()});
+// one tone: type,freq(start),freq(end),dur,vol,delay
+function tn(dest,type,f1,f2,dur,vol,dl){var c=AU.ctx,t=c.currentTime+(dl||0),o=c.createOscillator(),g=c.createGain();o.type=type;o.frequency.setValueAtTime(f1,t);if(f2&&f2!==f1)o.frequency.exponentialRampToValueAtTime(Math.max(20,f2),t+dur);
+ g.gain.setValueAtTime(vol,t);g.gain.exponentialRampToValueAtTime(.001,t+dur);o.connect(g);g.connect(dest);o.start(t);o.stop(t+dur+.02)}
+function nz(dest,dur,vol,dl,hp){var c=AU.ctx,t=c.currentTime+(dl||0),s=c.createBufferSource(),g=c.createGain(),f=c.createBiquadFilter();s.buffer=AU.noise;f.type=hp?"highpass":"lowpass";f.frequency.value=hp||800;
+ g.gain.setValueAtTime(vol,t);g.gain.exponentialRampToValueAtTime(.001,t+dur);s.connect(f);f.connect(g);g.connect(dest);s.start(t);s.stop(t+dur+.02)}
+var SFX={
+ tap:function(D){tn(D,"square",880,880,.04,.12)},
+ deploy:function(D){tn(D,"square",330,660,.12,.2);tn(D,"square",660,990,.1,.15,.08)},
+ walk:function(D){nz(D,.05,.15,0,1500);nz(D,.05,.12,.18,1500)},
+ punch:function(D){nz(D,.09,.5,0);tn(D,"square",180,60,.1,.3)},
+ kick:function(D){nz(D,.12,.45,0,400);tn(D,"triangle",220,50,.14,.4)},
+ shot:function(D){tn(D,"square",1400,300,.15,.2);nz(D,.05,.2,0,3000)},
+ slam:function(D){tn(D,"sine",90,30,.45,.9);nz(D,.35,.6,0);tn(D,"triangle",60,25,.5,.6,.02)},
+ cast:function(D){[0,1,2,3].forEach(function(i){tn(D,"triangle",600+i*200,900+i*250,.12,.15,i*.05)})},
+ block:function(D){tn(D,"square",1200,1200,.06,.2);tn(D,"square",1600,1500,.12,.15,.05)},
+ stun:function(D){[0,1,2].forEach(function(i){tn(D,"triangle",1800,1000,.08,.15,i*.07)})},
+ heal:function(D){[523,659,784,1047].forEach(function(f,i){tn(D,"triangle",f,f,.12,.15,i*.06)})},
+ ko:function(D){tn(D,"square",440,55,.5,.3);nz(D,.3,.3,.1)},
+ tower:function(D){tn(D,"square",150,70,.25,.4);nz(D,.25,.45,0,200)},
+ surge:function(D){[262,330,392,523,659].forEach(function(f,i){tn(D,"square",f,f*1.01,.1,.15,i*.06)})},
+ overtime:function(D){[0,1,2].forEach(function(i){tn(D,"square",880,660,.18,.2,i*.25)})},
+ win:function(D){[[523,0],[659,.12],[784,.24],[1047,.36],[784,.56],[1047,.68]].forEach(function(n){tn(D,"square",n[0],n[0],n[1]>.6?.5:.14,.2,n[1]);tn(D,"triangle",n[0]/2,n[0]/2,.14,.2,n[1])})},
+ lose:function(D){[[392,0],[370,.2],[349,.4],[262,.6]].forEach(function(n){tn(D,"square",n[0],n[0],n[1]>.5?.6:.18,.18,n[1]);tn(D,"triangle",n[0]/2,n[0]/2,.18,.2,n[1])})}};
+function sfx(k){if(!AU.ctx||!AU.sfx||document.hidden)return;var now=AU.ctx.currentTime;if(AU.last[k]&&now-AU.last[k]<.05)return;AU.last[k]=now;try{SFX[k](AU.sg)}catch(e){}}
+// ---- music: tiny step sequencer (lookahead scheduler, 8th notes) ----
+function nf(n){return 440*Math.pow(2,(n-69)/12)}
+var TRACKS={
+ menu:{bpm:96,lead:[72,0,76,0,79,0,76,74,72,0,74,76,74,0,67,0, 69,0,72,0,76,0,74,72,71,0,72,74,72,0,0,0],bass:[48,48,55,55,45,45,52,52,41,41,48,48,43,43,50,50],hat:0},
+ battle:{bpm:144,lead:[64,0,67,69,71,0,69,67,64,0,62,64,67,0,64,0, 69,0,71,72,74,0,72,71,69,67,69,71,64,0,0,0],bass:[40,52,40,52,38,50,38,50,36,48,36,48,38,50,43,47],hat:1},
+ ot:{bpm:176,lead:[76,0,79,81,83,0,81,79,76,0,74,76,79,0,76,0, 81,0,83,84,86,0,84,83,81,79,81,83,76,0,0,0],bass:[40,52,40,52,38,50,38,50,36,48,36,48,38,50,43,47],hat:1}};
+function auMusic(name,force){AU.want=name;if(!AU.ctx)return;if(AU.track===name&&!force)return;AU.track=name;AU.step=0;AU.next=AU.ctx.currentTime+.1;
+ if(AU.timer)clearInterval(AU.timer);AU.timer=setInterval(auTick,120)}
+function auTick(){if(!AU.ctx||document.hidden||!AU.music)return;var T=TRACKS[AU.track];if(!T)return;var sp=60/T.bpm/2,c=AU.ctx;
+ if(AU.next<c.currentTime)AU.next=c.currentTime+.05;
+ while(AU.next<c.currentTime+.35){var i=AU.step%T.lead.length,dl=AU.next-c.currentTime,n=T.lead[i];
+  if(n)tn(AU.mg,"square",nf(n),0,sp*.9,.09,dl);if(i%2===0){var b=T.bass[(i/2)%T.bass.length];tn(AU.mg,"triangle",nf(b),0,sp*1.8,.22,dl)}
+  if(T.hat&&i%2===1)nz(AU.mg,.03,.05,dl,6000);if(T.hat&&i%8===0)tn(AU.mg,"sine",120,40,.12,.35,dl);
+  AU.next+=sp;AU.step++}}
+function auPanel(){var p=$("auPanel");p.classList.toggle("show");$("auMusic").checked=AU.music;$("auSfx").checked=AU.sfx;$("auMv").value=AU.mv;$("auSv").value=AU.sv}
+
 function frame(el,h,fr){el.classList.add("posed");var im=el.querySelector("img.pix");if(im)im.src=spriteURL(h,fr)}
 
 function playFight(I,done){if(SPEED>=99)return done();var q=[];function at(ms,f){q.push(setTimeout(f,T_(ms)))}
@@ -762,7 +817,7 @@ function playFight(I,done){if(SPEED>=99)return done();var q=[];function at(ms,f)
  aEl.classList.add("fighting");aEl.style.transition="transform "+T_(260)+"ms cubic-bezier(.3,1.5,.6,1)";
  function burst(el,txt,cls){var r=el.getBoundingClientRect(),d=document.createElement("div");d.className="burst "+(cls||"");d.textContent=txt;d.style.left=(r.left+r.width/2)+"px";d.style.top=(r.top+r.height/2)+"px";document.body.appendChild(d);setTimeout(function(){d.remove()},T_(900)+200)}
  function beam(){var d=document.createElement("div");d.className="beam2";var x1=ar.left+ar.width/2,y1=ar.top+ar.height/2,len=Math.hypot(dx,dy);d.style.left=x1+"px";d.style.top=y1+"px";d.style.width=len+"px";d.style.transform="rotate("+Math.atan2(dy,dx)+"rad)";document.body.appendChild(d);setTimeout(function(){d.remove()},T_(500)+100)}
- function hit(n){tEl.classList.remove("recoil2");void tEl.offsetWidth;tEl.classList.add("recoil2");if(I.T)frame(tEl,I.T,"hit");
+ function hit(n){sfx(blocked?"block":!I.T?"tower":(n===2?"kick":"punch"));if(n===(ab==="double"?2:1)){if(ab==="stun"&&I.stun)sfx("stun");if(ab==="drain"||ab==="heal")setTimeout(function(){sfx("heal")},120)}if(I.tKO||I.aKO)setTimeout(function(){sfx("ko")},T_(380));tEl.classList.remove("recoil2");void tEl.offsetWidth;tEl.classList.add("recoil2");if(I.T)frame(tEl,I.T,"hit");
   if(n===1){if(ab==="blast"||ab==="swift")beam();if(blocked)burst(tEl,"🛡️","big");else burst(tEl,"💥");
    I.fx.forEach(function(f){var el=nodeFor(f.id);if(el)burst(el,f.t==="BLOCK!"?"BLOCK!":(["POW!","BAM!","WHAM!","KRAK!"][Math.floor(Math.random()*4)])+" "+f.t,"txt")})}
   else burst(tEl,"💥");
@@ -773,7 +828,7 @@ function playFight(I,done){if(SPEED>=99)return done();var q=[];function at(ms,f)
  function orb(){var pr=document.createElement("div");pr.className="proj orb";pr.style.left=(ar.left+ar.width/2)+"px";pr.style.top=(ar.top+ar.height*.35)+"px";pr.style.transition="transform "+T_(280)+"ms ease-in";document.body.appendChild(pr);void pr.offsetWidth;pr.style.transform="translate("+dx+"px,"+(dy+ar.height*.15)+"px) scale(1.6)";setTimeout(function(){pr.remove()},T_(300)+40)}
  function shake(){var f=$("field");if(!f)return;f.classList.remove("gshake");void f.offsetWidth;f.classList.add("gshake");setTimeout(function(){f.classList.remove("gshake")},T_(450)+50)}
  function ring(){var r=aEl.getBoundingClientRect(),d=document.createElement("div");d.className="pring";d.style.left=(r.left+r.width/2)+"px";d.style.top=(r.top+r.height/2)+"px";d.style.animationDuration=T_(500)+"ms";document.body.appendChild(d);setTimeout(function(){d.remove()},T_(520)+40)}
- at(40,function(){
+ at(40,function(){sfx(AR==="ranged"?"shot":AR==="mystic"||AR==="support"?"cast":AR==="blade"?"kick":AR==="giant"?"walk":"punch");
   if(AR==="ranged"){TF("translate("+(-dx*.05)+"px,"+(-dy*.05)+"px) rotate("+(dx>0?-4:4)+"deg)");frame(aEl,I.A,"punch");shoot()}
   else if(AR==="mystic"){TF("translateY(-10px) scale(1.08)");frame(aEl,I.A,"cast");burst(aEl,"✨","");orb()}
   else if(AR==="giant"){TF("translate("+dx*.35+"px,"+(dy*.35-28)+"px) scale(1.1)");frame(aEl,I.A,"slam")}
@@ -781,7 +836,7 @@ function playFight(I,done){if(SPEED>=99)return done();var q=[];function at(ms,f)
   else if(AR==="blade"){TF("translate("+dx*.7+"px,"+dy*.7+"px) rotate(360deg) scale(1.1)");frame(aEl,I.A,"kick")}
   else if(AR==="support"){ring();TF("translate("+dx*.45+"px,"+dy*.45+"px) scale(1.08)");frame(aEl,I.A,"cast")}
   else{TF("translate("+dx*.72+"px,"+dy*.72+"px) rotate("+(dx>0?10:-10)+"deg) scale(1.2)");frame(aEl,I.A,"punch")}});
- if(AR==="giant")at(250,function(){TF("translate("+dx*.6+"px,"+dy*.6+"px) scale(1.15)");shake()});
+ if(AR==="giant")at(250,function(){sfx("slam");TF("translate("+dx*.6+"px,"+dy*.6+"px) scale(1.15)");shake()});
  if(AR==="blade")at(300,function(){burst(tEl,"⚔️","big")});
  at(360,function(){aEl.classList.remove("blur")});
  at(330,function(){hit(1)});if(ab==="double"){if(rng)at(400,function(){frame(aEl,I.A,"punch");shoot()});at(650,function(){frame(aEl,I.A,"punch");hit(2)})}
@@ -789,7 +844,7 @@ function playFight(I,done){if(SPEED>=99)return done();var q=[];function at(ms,f)
  at(e,function(){aEl.style.transform="";frame(aEl,I.A,I.aKO?"ko":"idle");if(I.T&&!I.tKO)frame(tEl,I.T,"idle");if(I.tKO){tEl.classList.add("kofade");if(I.T)frame(tEl,I.T,"ko");burst(tEl,"K.O.!","ko")}if(I.aKO)aEl.classList.add("kofade")});
  at(e+(I.tKO||I.aKO?650:300),function(){aEl.classList.remove("fighting");done()})}
 function timeUpText(){if(G&&G.timeUp)$("endText").textContent="⏱ Time's up after round "+CFG.maxRound+"! "+(G.winner===0?"You win on HQ HP ("+G.hp[0]+" vs "+G.hp[1]+")!":G.winner===1?(NET.on||NET.was?NET.oppName:"The villains")+" win on HQ HP ("+G.hp[1]+" vs "+G.hp[0]+").":"Equal HQ HP: it's a draw!")}
-function showEnd(){if(!G.over||$("end").classList.contains("show"))return;var w=G.winner===0;$("endTitle").textContent=w?"VICTORY!":G.winner===1?"DEFEAT!":"DRAW!";
+function showEnd(){if(!G.over||$("end").classList.contains("show"))return;var w=G.winner===0;sfx(w?"win":"lose");auMusic("menu");$("endTitle").textContent=w?"VICTORY!":G.winner===1?"DEFEAT!":"DRAW!";
  $("againBtn").style.display=NET.on||NET.was?"none":"";if(NET.on||NET.was){$("endText").textContent=NET.endMsg||(w?"You defeated "+NET.oppName+"! 🏆":G.winner===1?NET.oppName+" wins this time. 🦹":"Both HQs fall at once!");timeUpText(),$("end").classList.add("show");setTimeout(function(){if(G&&G.over)netClose(true)},5000);return}
  $("endText").textContent=w?"The villains' HQ crumbles! The city is saved! 🦸":G.winner===1?"Your HQ has fallen... the villains win this round. 🦹":"Both HQs fall at once!";timeUpText();var pt=progResult();if(pt){$("endText").innerHTML=esc($("endText").textContent)+'<div class="lvlup'+(w?'':' lose')+'">'+esc(pt)+'</div>'}$("againBtn").textContent=PROG_ON?(w?"▶ Next Level":"↻ Retry Level"):"Rematch";$("end").classList.add("show")}
 function aiStep(){busy=true;render();var s=1,o=0;
@@ -853,7 +908,7 @@ function renderBuilder(){var sq=$("squad");sq.innerHTML="";for(var k=0;k<CFG.dec
  w.insertAdjacentHTML("beforeend",'<div class="ctl">'+(on?"✅ In squad":"➕ Add")+'</div>');g.appendChild(w)});
  $("bcount").textContent=custom.length+" / "+CFG.deck;$("bcount").style.color=custom.length===CFG.deck?"#2a9d8f":"#e63946"}
 function saveC(){try{localStorage.setItem("sc_custom",JSON.stringify(custom))}catch(e){}renderHome()}
-function showHome(){document.body.classList.remove("inbattle");if(NET.on)netClose();NET.was=false;$("restartBtn").style.display="";$("end").classList.remove("show");$("home").classList.remove("hide");renderHome()}
+function showHome(){auMusic("menu");document.body.classList.remove("inbattle");if(NET.on)netClose();NET.was=false;$("restartBtn").style.display="";$("end").classList.remove("show");$("home").classList.remove("hide");renderHome()}
 var PROG={lvl:1,streak:0,best:1,drop:false},PROG_ON=false;try{Object.assign(PROG,JSON.parse(localStorage.getItem("sc_prog")||"{}"))}catch(e){}
 function saveProg(){try{localStorage.setItem("sc_prog",JSON.stringify(PROG))}catch(e){}}
 function oppTxt(o){return "Lv "+o.lvl+" · "+o.name+" · AI "+o.d.toUpperCase()+(o.hp?" · "+(o.hp>0?"+":"")+o.hp+" HQ HP":"")+(o.e?" · +"+o.e+"⚡":"")+(o.pw?" · heroes +"+o.pw+" Power":"")+(o.hb?" · +"+o.hb+" Health":"")}
@@ -899,7 +954,7 @@ function wire(c){NET.conn=c;c.on("data",function(d){try{d=typeof d==="string"?JS
  c.on("close",netLost);c.on("error",netLost)}
 function netLost(){if(NET.pbusy||NET.q.length){NET.lostPending=true;return}if(!NET.on){if(NET.conn)netStatus("Connection closed.");return}if(G&&!G.over){$("end").classList.remove("show");NET.endMsg=NET.oppName+" disconnected. You win by forfeit! 🏆";G.over=true;G.winner=0;busy=false;$("arena").classList.remove("show")}badge("🔴 Disconnected",false);render()}
 function pump(){if(!NET.pbusy&&!NET.q.length&&NET.lostPending){NET.lostPending=false;return netLost()}if(NET.pbusy||!NET.q.length)return;NET.pbusy=true;var d=NET.q.shift();handle(d,function(){NET.pbusy=false;pump()})}
-function beginOnline(){setTimeout(function(){var M=window.G&&MAPS[G.map];if(M)bigBanner(M.e+" "+M.n.toUpperCase(),"Arena")},400);NET.lostPending=false;$("endText").textContent="";$("endTitle").textContent="";NET.on=true;NET.was=true;NET.endMsg="";$("online").classList.remove("show");$("home").classList.add("hide");$("end").classList.remove("show");sel=null;busy=false;
+function beginOnline(){auMusic("battle");setTimeout(function(){var M=window.G&&MAPS[G.map];if(M)bigBanner(M.e+" "+M.n.toUpperCase(),"Arena")},400);NET.lostPending=false;$("endText").textContent="";$("endTitle").textContent="";NET.on=true;NET.was=true;NET.endMsg="";$("online").classList.remove("show");$("home").classList.add("hide");$("end").classList.remove("show");sel=null;busy=false;
  badge("🟢 Online vs "+NET.oppName,true);$("restartBtn").style.display="none"}
 function handle(d,done){if(d.t==="full"){netStatus("That match is already full.");return done()}
  if(d.t==="forfeit"){if(G&&!G.over){NET.endMsg=NET.oppName+" forfeited. You win! 🏆";G.over=true;G.winner=0;busy=false;render()}return done()}
@@ -925,11 +980,12 @@ function uiPlay(id){if(!NET.on){return play(G,0,id)}
 function uiAttack(aid,tid){if(NET.on&&!NET.host){netSend({t:"act",x:{t:"atk",a:aid,tid:tid}});busy=true;sel=null;render();return}
  doAttack(0,aid,tid,NET.on?function(){netSend({t:"state",G:G})}:undefined)}
 function uiEnd(){if(NET.host){endTurn(G);render();netSend({t:"state",G:G})}else{netSend({t:"act",x:{t:"end"}});busy=true;render()}}
-function start(){G=newGame(deckList(pick),aiDeck.list);G.bonus[1]=[];/* vs-AI: no second-player bonus energy for the computer */if(PROG_ON)applyProg(G,progOpp(PROG.lvl));sel=null;busy=false;$("end").classList.remove("show");var MP=MAPS[G.map]||MAPS[0];log(G,"🗺 Arena: "+MP.n+" "+MP.e);setTimeout(function(){bigBanner(MP.e+" "+MP.n.toUpperCase(),"Arena")},300);log(G,"A new battle begins! The villains bring "+aiDeck.list.map(function(i){return HEROES[i].n}).join(", ")+". Your turn.");render()}
+function start(){auMusic("battle");G=newGame(deckList(pick),aiDeck.list);G.bonus[1]=[];/* vs-AI: no second-player bonus energy for the computer */if(PROG_ON)applyProg(G,progOpp(PROG.lvl));sel=null;busy=false;$("end").classList.remove("show");var MP=MAPS[G.map]||MAPS[0];log(G,"🗺 Arena: "+MP.n+" "+MP.e);setTimeout(function(){bigBanner(MP.e+" "+MP.n.toUpperCase(),"Arena")},300);log(G,"A new battle begins! The villains bring "+aiDeck.list.map(function(i){return HEROES[i].n}).join(", ")+". Your turn.");render()}
 $("endBtn").onclick=function(){if(G.turn!==0||busy||G.over)return;sel=null;if(NET.on)return uiEnd();endTurn(G);aiStep()};
 $("restartBtn").onclick=function(){if(confirm("Restart? OK = rematch with same decks, Cancel = keep playing. Use 🏠 Home to change decks."))start()};$("againBtn").onclick=function(){if(PROG_ON)progBattle();else start()};
 $("speedSel").value=String(SPEED);$("speedSel").onchange=function(){SPEED=+this.value;try{localStorage.setItem("sc_speed",SPEED)}catch(e){}};
-$("homeBtn").onclick=function(){if(NET.on&&!G.over){if(confirm("Forfeit this online match and leave?")){netSend({t:"forfeit"});netClose(true);showHome()}return}if(G.over||confirm("Leave this battle and return to the Home screen?"))showHome()};$("endHome").onclick=showHome;$("battleBtn").onclick=battle;$("progBtn").onclick=progBattle;$("logBtn").onclick=function(){var w=$("logWrap");w.classList.toggle("open");this.textContent=w.classList.contains("open")?"📜 Log ▴":"📜 Log ▾";$("log").scrollTop=1e6};$("xInfo").onclick=function(){$("finfo").classList.remove("show")};$("finfo").onclick=function(e){if(e.target===this)this.classList.remove("show")};$("onlineBtn").onclick=openOnline;$("xOnline").onclick=$("netCancel").onclick=function(){netClose();$("online").classList.remove("show")};
+$("homeBtn").onclick=function(){if(NET.on&&!G.over){if(confirm("Forfeit this online match and leave?")){netSend({t:"forfeit"});netClose(true);showHome()}return}if(G.over||confirm("Leave this battle and return to the Home screen?"))showHome()};$("endHome").onclick=showHome;$("battleBtn").onclick=battle;document.addEventListener("click",function(e){if(e.target.closest&&e.target.closest("button"))sfx("tap");if(e.target.closest&&!e.target.closest("#auPanel,#auBtn"))$("auPanel").classList.remove("show")},true);auMusic("menu");
+$("auBtn").onclick=function(e){e.stopPropagation();auInit();auPanel()};$("auMusic").onchange=function(){AU.music=this.checked;auVol();auSave()};$("auSfx").onchange=function(){AU.sfx=this.checked;auVol();auSave()};$("auMv").oninput=function(){AU.mv=+this.value;auVol();auSave()};$("auSv").oninput=function(){AU.sv=+this.value;auVol();auSave();sfx("tap")};$("progBtn").onclick=progBattle;$("logBtn").onclick=function(){var w=$("logWrap");w.classList.toggle("open");this.textContent=w.classList.contains("open")?"📜 Log ▴":"📜 Log ▾";$("log").scrollTop=1e6};$("xInfo").onclick=function(){$("finfo").classList.remove("show")};$("finfo").onclick=function(e){if(e.target===this)this.classList.remove("show")};$("onlineBtn").onclick=openOnline;$("xOnline").onclick=$("netCancel").onclick=function(){netClose();$("online").classList.remove("show")};
 $("netHostBtn").onclick=function(){netHost()};$("netJoinBtn").onclick=function(){netJoin()};$("netCode").onkeydown=function(e){if(e.key==="Enter")netJoin()};$("diffSel").onchange=function(){DIFF=this.value;try{localStorage.setItem("sc_diff",DIFF)}catch(e){}};$("homeHelp").onclick=function(){$("help").classList.add("show")};
 $("bClear").onclick=function(){custom=[];saveC()};$("homeBar").style.flexWrap="wrap";$("bFill").onclick=function(){var pool=[];HEROES.forEach(function(h,i){var n=custom.filter(function(x){return x===i}).length;for(var k=n;k<2;k++)pool.push(i)});pool.sort(function(){return Math.random()-.5});pool=pool.filter(function(x,i,a){return a.indexOf(x)===i});while(custom.length<CFG.deck&&pool.length)custom.push(pool.pop());saveC()};$("helpBtn").onclick=function(){$("help").classList.add("show")};$("closeHelp").onclick=$("xHelp").onclick=function(){$("help").classList.remove("show")};$("help").onclick=function(e){if(e.target===this)this.classList.remove("show")};
 if(location.hash==="#custom")pick="custom";if(location.hash==="#slotsdemo"){SLOTS=[{name:"Speed Demons",list:[0,3,1,7,17]},{name:"Tank Wall",list:[4,10,16,2,12]},{name:"Storm Crew",list:[5,11,13,6,14]}];ACTIVE=1;custom=SLOTS[1].list.slice();slotUI={mode:"new",idx:-1};}showHome();if(location.hash==="#arena"||location.hash==="#einfo"||location.hash==="#walkup"){custom=location.hash==="#walkup"?[2,4,5,9,12]:[0,3,5,9,12];battle();var guard=0;while(guard++<12&&!(G.turn===0&&G.board[0].some(canAttack)&&G.board[1].length>=2&&G.board[0].length>=2)){aiTurn(G,G.turn,"easy");if(G.over){G=newGame(custom,randomDeck());}}$("help").classList.remove("show");var rd=G.board[0].filter(canAttack)[0];if(rd&&location.hash==="#arena")sel=rd.id;render();if(location.hash==="#einfo"&&G.board[1][0])openInfo(G.board[1][0],false)}if(location.hash==="#walkup"){render();setTimeout(function(){var h=G.hand[0].filter(function(c){return c.cost<=G.e[0]})[0];if(G.board[0].length>=CFG.board){G.board[0].pop()}if(h){uiPlay(h.id);render()}},200)}
